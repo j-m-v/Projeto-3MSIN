@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<title>Matricula</title>		
+	</head>
+	<script language="JavaScript">
+		function mascara(t, mask){
+		 var i = t.value.length;
+		 var saida = mask.substring(1,0);
+		 var texto = mask.substring(i)
+		 if (texto.substring(0,1) != saida){
+		 t.value += texto.substring(0,1);
+		 }
+		 
+		 }		 
+ </script>
+	<body bgcolor="#BDBDBD">
+		<center><h1>Matricula Artes</h1></center>
+		<form action="ManterMatriculaArtes.do" method="post">
+		<fieldset>
+		<legend>Dados da Matricula</legend>
+		
+		<table>
+		      <tr>
+			   <td>
+			    <label>Id Matricula:</label>
+			   </td>
+			   <td align="left">
+			    <input type = "number" name ="idMatricula" placeholder="Id da Matricula" pattern="[0-9]+$" title="Apenas numeros"/>	
+			   </td>
+			   
+			  <tr>	
+			   <td>
+			    <label>Id Aluno:</label>
+			   </td>
+			   <td align="left">
+			    <input type = "number" name ="idAluno" placeholder="Id do aluno" pattern="[0-9]+$" title="Apenas numeros" />	
+			   </td>
+			  </tr>
+			  
+			  <tr> 
+			   <td>
+			    <label>id Curso:</label>
+			   </td>
+			   <td align="left">
+			    <input type="number" name="idCurso" placeholder="id do Curso" pattern="[0-9]+$" title="Apenas numeros"/>
+			   </td>
+			  </tr>
+			  
+			  
+			  <tr>
+			   <td>
+			    <label>Valor Matricula: </label>
+			   </td>
+			   <td align="left">
+			    <input type="number"  name="valorMatricula" placeholder="Valor da Matricula" pattern="[0-9]+([\.,][0-9]+)?" step="0.01" title = "Apenas numeros com ate 2 casas decimais. "/> 
+			   </td>
+			  </tr>
+			  
+			  <tr>
+			   <td>
+			    <label>Status Matricula:</label>
+			   </td>
+			   <td align="left">
+			    <select name = "statusMatricula">
+                <option value="">Selecione</option>
+				<option value="Concluido">Concluido</option>
+                <option value="Fechado">Fechado</option>
+               
+			   </td>
+			  </tr>
+			  
+			 <tr>
+			   <td>
+			    <label>Status Matricula:</label>
+			   </td>
+			   <td align="left">
+			    <select name = "statusPagamento">
+                <option value="">Selecione</option>
+				<option value="Aberto">Aberto</option>
+                <option value="Fechado">Fechado</option>
+                <option value="Pendente Pagamento">Pendente Pagamento</option>
+   
+			   </td>
+			  </tr>
+		  </table>
+		</fieldset><br>
+		</br>
+		
+		
+	<div class="Linha">
+			<input type="submit" name="acao" value="Inserir"> 
+			<input type="submit" name="acao" value="Alterar"> 
+			<input type="submit" name="acao" value="Consultar"> 
+			<input type="submit" name="acao" value="Excluir">	
+			<input type="reset" name ="limpar" value="limpar">
+			</div>
+		</form>
+	</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<title>Aluno</title>
+		<meta charset="UTF-8" />
+	</head>
+	<script language="JavaScript" type="text/javascript">
+	 function mascara(t, mask){
+		 var i = t.value.length;
+		 var saida = mask.substring(1,0);
+		 var texto = mask.substring(i)
+		 if (texto.substring(0,1) != saida){
+		 t.value += texto.substring(0,1);
+		 }
+		 }
+	
+ </script>
+	<body bgcolor="#BDBDBD">
+		<center><h3>Aluno</h3></center>
+		<form  name="form" action="ManterAluno.do" method="post">
+		
+		<fieldset>
+		<legend>Dados Aluno</legend>
+	
+		<table>
+		      <tr>
+			   <td>
+			    <label>Id:</label>
+			   </td>
+			   <td align="left">
+			    <input type = "number" name ="id" placeholder="Id"  pattern="[0-9]+$" title="Apenas numeros"/>	
+			   </td>
+			   
+			  <tr>	
+			   <td>
+			    <label>Nome:</label>
+			   </td>
+			   <td align="left">
+			    <input type ="text" name ="nome"  placeholder="Nome" pattern="[a-zA-Z\s]+" title="Nome invalido"/>	
+			   </td>
+			  </tr>
+			  
+			  <tr> 
+			   <td>
+			    <label>e-mail:</label>
+			   </td>
+			   <td align="left">
+			    <input type="email" name="email" placeholder=" Digite o E-mail" />
+			   </td>
+			  </tr>
+			  
+			  <tr>
+			   <td>
+			    <label>Data de Nascimento:</label>
+			   </td>
+			   <td align="left">
+				<input type="date" name="dataNascimento" placeholder="Data de Nascimento" min="1960-01-01" max="2001-01-01" onkeypress="mascara(this, '##/##/####')" maxlength="10" />
+			   </td>
+			  </tr>
+			  
+			  <tr>
+			   <td>
+			    <label>RG: </label>
+			   </td>
+			   <td align="left">
+			    <input type="text" name="rg" size="13" maxlength="12" placeholder="Digite o RG" onkeypress="mascara(this, '##.###.###-#')" maxlength="12" pattern="\d{2}\.\d{3}\.\d{3}-\d{1}" title="RG inválido" /> 
+			   </td>
+			  </tr>
+			  
+			  <tr>
+			   <td>
+			    <label>CPF:</label>
+			   </td>
+			   <td align="left">
+			    <input type="text" name="cpf" size="11" placeholder="Digite o CPF" onkeypress="mascara(this, '###.###.###/##')" maxlength="14" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" title="CPF inválido" /> 
+			   </td>
+			  </tr>
+			  
+			  <tr>
+			   <td>
+			    <label>Telefone:</label>
+			   </td>
+			   <td align="left">
+			    <input type="text" name="telefone" placeholder="Telefone" size="13" onkeypress="mascara(this, '## ####-####')" maxlength="12" pattern="\d{2}\ \d{4}\-\d{4}" title="Telefone Inválido"/> 
+			   </td>
+			  </tr>
+			 </table>
+			</fieldset>
+			<br/>
+
+			
+		<fieldset>
+		<legend>Endereço</legend>
+		<br/>
+
+			<table>
+			<tr>
+			 	<td>
+			    	<label>Endereço:</label>	
+			    </td>
+			   
+			    <td align="left">
+			    	<input type="text" name="endereco" placeholder="Endereco" />
+			    </td>
+			   
+			    <td>
+			    	<label>Cidade:</label>
+			    </td>
+			   
+			    <td align="left">
+			    	<input type="text" name="cidade" placeholder="Cidade" pattern="[a-zA-Z0\s]+" title="Nome de cidade invalido" />
+			    </td>
+			  </tr>
+
+
+			  <tr>			   
+			    <td>
+			    	<label>CEP:</label>	
+			    </td>
+			   
+			    <td align="left">
+			    	<input type="text" name="cep" placeholder="Digite o Cep" onkeypress="mascara(this, '#####-##')" maxlength="8" pattern="\d{5}\-\d{2}" title="CEP Inválido"/>
+			    </td>
+			   
+			    <td>
+			    	<label for="Estado"> Estado: </label>
+			    	
+			    </td>
+			    <td>
+			    	<select name="estado">
+	<option value="">Selecione</option>
+	<option value="AC">AC</option>
+	<option value="AL">AL</option>
+	<option value="AM">AM</option>
+	<option value="AP">AP</option>
+	<option value="BA">BA</option>
+	<option value="CE">CE</option>
+	<option value="DF">DF</option>
+	<option value="ES">ES</option>
+	<option value="GO">GO</option>
+	<option value="MA">MA</option>
+	<option value="MG">MG</option>
+	<option value="MS">MS</option>
+	<option value="MT">MT</option>
+	<option value="PA">PA</option>
+	<option value="PB">PB</option>
+	<option value="PE">PE</option>
+	<option value="PI">PI</option>
+	<option value="PR">PR</option>
+	<option value="RJ">RJ</option>
+	<option value="RN">RN</option>
+	<option value="RS">RS</option>
+	<option value="RO">RO</option>
+	<option value="RR">RR</option>
+	<option value="SC">SC</option>
+	<option value="SE">SE</option>
+	<option value="SP">SP</option>
+	<option value="TO">TO</option>
+ </select>
+			    </td>
+			  </tr>
+			</table>
+			</fieldset><br></br>
+		
+			
+			<div class="Linha">
+			<input type="submit" name="acao" value="Inserir"> 
+			<input type="submit" name="acao" value="Alterar"> 
+			<input type="submit" name="acao" value="Consultar"> 
+			<input type="submit" name="acao" value="Excluir">	
+			<input type="reset" name ="limpar" value="limpar">
+			</div>
+		</form>
+	</body>
+</html>

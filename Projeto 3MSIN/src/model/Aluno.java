@@ -1,6 +1,6 @@
 package model;
 
-import daos.AlunoDAO;
+import dao.AlunoDAO;
 import to.AlunoTO;
 
 public class Aluno {
@@ -32,7 +32,7 @@ public class Aluno {
 	}
 
 	public Aluno(String nome, String cpf, String rg, String dataNasc, String telefone, String email, String cep,
-			String endereco, String cidade, String estado, String login) {
+			String endereco, String cidade, String estado) {
 		this.nome = nome;
 		this.cpf = cpf;
 		this.rg = rg;
@@ -43,7 +43,21 @@ public class Aluno {
 		this.endereco = endereco;
 		this.cidade = cidade;
 		this.estado = estado;
-		this.login = login;
+	}
+	
+	public Aluno(int codigo, String nome, String cpf, String rg, String dataNasc, String telefone, String email, String cep,
+			String endereco, String cidade, String estado) {
+		this.codigo = codigo;
+		this.nome = nome;
+		this.cpf = cpf;
+		this.rg = rg;
+		this.dataNasc = dataNasc;
+		this.telefone = telefone;
+		this.email = email;
+		this.cep = cep;
+		this.endereco = endereco;
+		this.cidade = cidade;
+		this.estado = estado;
 	}
 
 	// METODOS MODIFICADORES
@@ -156,22 +170,23 @@ public class Aluno {
 		AlunoDAO dao = new AlunoDAO();
 		AlunoTO to = new AlunoTO();
 		to.setNome(nome);
-		to.setEndereco(endereco);
-		to.setTelefone(telefone);
-		to.setDataNasc(dataNasc);
-		to.setEmail(email);
-		to.setRG(rg);
 		to.setCPF(cpf);
-		to.setLogin(login);
+		to.setRG(rg);
+		to.setDataNasc(dataNasc);
+		to.setTelefone(telefone);
+		to.setEmail(email);
 		to.setCEP(cep);
+		to.setEndereco(endereco);
 		to.setCidade(cidade);
 		to.setEstado(estado);
 		dao.incluir(to);
+		setCodigo(to.getCodigo());
 	}
 
 	public void alterar() {
 		AlunoDAO dao = new AlunoDAO();
 		AlunoTO to = new AlunoTO();
+		to.setCodigo(codigo);
 		to.setNome(nome);
 		to.setCPF(cpf);
 		to.setRG(rg);
@@ -182,7 +197,6 @@ public class Aluno {
 		to.setEndereco(endereco);
 		to.setCidade(cidade);
 		to.setEstado(estado);
-		to.setCodigo(codigo);
 		dao.alterar(to);
 	}
 
@@ -221,6 +235,23 @@ public class Aluno {
 	public void retornarUltimoID() {
 		AlunoDAO dao = new AlunoDAO();
 		dao.retornarUltimoID();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Aluno other = (Aluno) obj;
+		if (rg == null) {
+			if (other.rg != null)
+				return false;
+		} else if (!rg.equals(other.rg))
+			return false;
+		return true;
 	}
 
 }

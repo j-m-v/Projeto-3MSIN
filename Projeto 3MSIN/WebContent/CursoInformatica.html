@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<title>CursoInformatica</title>
+		<meta charset="UTF-8" />		
+	</head>
+	
+	
+	<body bgcolor="#BDBDBD">
+		<h1 align=center>Curso Informatica</h1>
+		<form action="ManterCursoArtes.do" method="post">
+		<fieldset>
+		<legend>Dados do Curso</legend>
+		
+		<table>
+		      <tr>
+			   <td>
+			    <label>Id Curso:</label>
+			   </td>
+			   <td align="left">
+			    <input type = "text" name ="id" placeholder="Id" placeholder="Id do curso" pattern="[0-9]+$" title="Apenas numeros"  />	
+			   </td>  
+			  <tr>	
+			   <td>
+			    <label>Nome:</label>
+			   </td>
+			   <td align="left">
+			    <input type = "text" name ="nome" placeholder="Nome" pattern="[a-zA-Z\s]+" title="Nome invalido" />	
+			   </td>
+			  </tr>
+			  
+			  <tr> 
+			   <td>
+			    <label>Data de inicio:</label>
+			   </td>
+			   <td align="left">
+			    <input type="date" name="dataInicio" placeholder="Data Inicio" min="2016-01-01" onkeypress="mascara(this, '##/##/####')" maxlength="10"  />
+			   </td>
+			  </tr>
+			  
+			  
+			  <tr>
+			   <td>
+			    <label>Data de termino: </label>
+			   </td>
+			   <td align="left">
+			    <input type="date" name="dataTermino" placeholder="Data Termino"  min="2016-01-01" onkeypress="mascara(this, '##/##/####')" maxlength="10" /> 
+			   </td>
+			  </tr>
+			  
+			  <tr>
+			   <td>
+			    <label>Horario Previsto:</label>
+			   </td>
+			   <td align="left">
+			    <input type="time" name="horarioPrevisto" />       
+			   </td>
+			  </tr>
+			  
+			 <tr>
+			   <td>
+			    <label>Nº de vagas:</label>
+			   </td>
+			   <td align="left">
+			   <input type="text" name="vagas" placeholder="Nº Vagas" pattern="[0-9]+$" title="Apenas numeros" />
+   			   </td>
+			  </tr>
+			  
+			  <tr>
+			   <td>
+			    <label>Valor:</label>
+			   </td>
+			   <td align="left">
+			   <input type="text" name="valor" placeholder="Valor Curso" pattern="[0-9]+([\.,][0-9]+)?" step="0.01" title = "Apenas numeros com ate 2 casas decimais. "/>
+   			   </td>
+			  </tr>
+			  
+			  <tr>
+			   <td>
+			    <label>Softwares:</label>
+			   </td>
+			   <td align="left">
+			   
+				<input type="text" name="softwares" size=35 placeholder="Softwares utilizados" pattern="[a-zA-Z0-9 ,+\s]+" title="Caracter invalido"/>
+			   </td>
+			  </tr>
+			  
+			  <tr>
+			   <td>
+			    <label>Nº Laboratório:</label>
+			   </td>
+			   <td align="left">
+				<input type="number" name="numeroLaboratorios" placeholder="numero do lab" pattern="[0-9]+$" title="Apenas numeros" />
+			   </td>
+			  </tr>
+		  </table><br>
+		</fieldset><br>
+		<br></br>
+		
+		
+	<div class="Linha">
+			<input type="submit" name="acao" value="Inserir"> 
+			<input type="submit" name="acao" value="Alterar"> 
+			<input type="submit" name="acao" value="Consultar"> 
+			<input type="submit" name="acao" value="Excluir">	
+			<input type="reset" name ="limpar" value="limpar">
+			</div>
+		</form>
+	</body>
+</html>

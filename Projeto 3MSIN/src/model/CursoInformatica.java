@@ -1,14 +1,13 @@
 package model;
 
-import javax.swing.JOptionPane;
 
-import daos.CursoInformaticaDAO;
+import dao.CursoInformaticaDAO;
 import to.CursoInformaticaTO;
 
 public class CursoInformatica {
 
 	private int codigoInformatica;
-	private String nomeCurso;
+	private String nomeInfo;
 	private String dataInicio;
 	private String dataTermino;
 	private String horarioPrevisto;
@@ -20,7 +19,7 @@ public class CursoInformatica {
 	public CursoInformatica() {
 
 		codigoInformatica = 0;
-		nomeCurso = "";
+		nomeInfo = "";
 		dataInicio = "";
 		dataTermino = "";
 		horarioPrevisto = "";
@@ -31,9 +30,9 @@ public class CursoInformatica {
 
 	}
 
-	public CursoInformatica(String nome, String dataInicio, String dataTermino, String horarioPrevisto,
-			int numeroVagas, double valorCurso, String softwares, String numeroLaboratorios) {
-		this.nomeCurso = nome;
+	public CursoInformatica(String nome, String dataInicio, String dataTermino, String horarioPrevisto, int numeroVagas,
+			double valorCurso, String softwares, String numeroLaboratorios) {
+		this.nomeInfo = nome;
 		this.softwares = softwares;
 		this.dataInicio = dataInicio;
 		this.dataTermino = dataTermino;
@@ -41,33 +40,44 @@ public class CursoInformatica {
 		this.numeroVagas = numeroVagas;
 		this.valorCurso = valorCurso;
 		this.numeroLaboratorios = numeroLaboratorios;
-
 	}
+	
+	public CursoInformatica(int codigo, String nome, String dataInicio, String dataTermino, String horarioPrevisto, int numeroVagas,
+			double valorCurso, String softwares, String numeroLaboratorios) {
+		this.codigoInformatica = codigo;
+		this.nomeInfo = nome;
+		this.softwares = softwares;
+		this.dataInicio = dataInicio;
+		this.dataTermino = dataTermino;
+		this.horarioPrevisto = horarioPrevisto;
+		this.numeroVagas = numeroVagas;
+		this.valorCurso = valorCurso;
+		this.numeroLaboratorios = numeroLaboratorios;
+	}
+	
+	
 
-
-	//MÉTODOS DE ACESSO
+	// MÉTODOS DE ACESSO
 	public int getCodigoInformatica() {
 		return codigoInformatica;
 	}
 
 	public String getNome() {
-		return nomeCurso;
+		return nomeInfo;
 	}
-	
+
 	public String getDataInicio() {
 		return dataInicio;
 	}
-	
-	
+
 	public String getDataTermino() {
 		return dataTermino;
 	}
-	
-	
+
 	public String getHorarioPrevisto() {
 		return horarioPrevisto;
 	}
-	
+
 	public int getNumeroVagas() {
 		return numeroVagas;
 	}
@@ -75,24 +85,22 @@ public class CursoInformatica {
 	public double getValorCurso() {
 		return valorCurso;
 	}
-	
+
 	public String getSoftwares() {
 		return softwares;
 	}
-	
+
 	public String getNumeroLaboratorios() {
 		return numeroLaboratorios;
 	}
-	
-	//MÉTODOS MODIFICADORES
+
+	// MÉTODOS MODIFICADORES
 	public void setCodigoInformatica(int codigoInformatica) {
 		this.codigoInformatica = codigoInformatica;
 	}
 
-	
-
 	public void setNome(String nomeCurso) {
-		this.nomeCurso = nomeCurso;
+		this.nomeInfo = nomeCurso;
 	}
 
 	public void setDataInicio(String dataInicio) {
@@ -118,25 +126,15 @@ public class CursoInformatica {
 	public void setSoftwares(String softwares) {
 		this.softwares = softwares;
 	}
-		
+
 	public void setNumeroLaboratorios(String numeroLaboratorios) {
 		this.numeroLaboratorios = numeroLaboratorios;
 	}
 
-	// DADOS CURSOARTES
-	public void dados() {
-		String msg = "Código: " + codigoInformatica + "\nNome: " + nomeCurso + "\nData Inicio: " + dataInicio
-				+ "\nData Termino: " + dataTermino + "\nHorário: " + horarioPrevisto + "\nNº Vagas: " + numeroVagas
-				+ "\nValor: " + valorCurso + "\nNº Laboratório:" + numeroLaboratorios;
-
-		JOptionPane.showMessageDialog(null, msg);
-	}
-    
 	public void incluir() {
 		CursoInformaticaDAO dao = new CursoInformaticaDAO();
 		CursoInformaticaTO to = new CursoInformaticaTO();
-		to.setCodigoInformatica(codigoInformatica);
-		to.setNome(nomeCurso);
+		to.setNome(nomeInfo);
 		to.setDataInicio(dataInicio);
 		to.setDataTermino(dataTermino);
 		to.setHorarioPrevisto(horarioPrevisto);
@@ -145,13 +143,14 @@ public class CursoInformatica {
 		to.setSoftwares(softwares);
 		to.setNumeroLaboratorios(numeroLaboratorios);
 		dao.incluir(to);
+		setCodigoInformatica(to.getCodigoInformatica());
 	}
-	
+
 	public void alterar() {
 		CursoInformaticaDAO dao = new CursoInformaticaDAO();
 		CursoInformaticaTO to = new CursoInformaticaTO();
-		
-		to.setNome(nomeCurso);
+		to.setCodigoInformatica(codigoInformatica);
+		to.setNome(nomeInfo);
 		to.setDataInicio(dataInicio);
 		to.setDataTermino(dataTermino);
 		to.setHorarioPrevisto(horarioPrevisto);
@@ -160,23 +159,21 @@ public class CursoInformatica {
 		to.setSoftwares(softwares);
 		to.setNumeroLaboratorios(numeroLaboratorios);
 		dao.alterar(to);
-		
 	}
-	
+
 	public void consultar() {
-			CursoInformaticaDAO dao = new CursoInformaticaDAO();
-			CursoInformaticaTO to = dao.consultar(codigoInformatica);
-			
-			nomeCurso = to.getNome();
-			dataInicio = to.getDataInicio();
-			dataTermino = to.getDataTermino();
-			horarioPrevisto = to.getHorarioPrevisto();
-			numeroVagas = to.getNumeroVagas();
-			valorCurso = to.getValorCurso();
-			softwares = to.getSoftwares();
-			numeroLaboratorios = to.getNumeroLaboratorios();
-		}
-	
+		CursoInformaticaDAO dao = new CursoInformaticaDAO();
+		CursoInformaticaTO to = dao.consultar(codigoInformatica);
+		nomeInfo = to.getNome();
+		dataInicio = to.getDataInicio();
+		dataTermino = to.getDataTermino();
+		horarioPrevisto = to.getHorarioPrevisto();
+		numeroVagas = to.getNumeroVagas();
+		valorCurso = to.getValorCurso();
+		softwares = to.getSoftwares();
+		numeroLaboratorios = to.getNumeroLaboratorios();
+	}
+
 	public void deletar() {
 		CursoInformaticaDAO dao = new CursoInformaticaDAO();
 		CursoInformaticaTO to = new CursoInformaticaTO();
@@ -188,11 +185,29 @@ public class CursoInformatica {
 		CursoInformaticaDAO dao = new CursoInformaticaDAO();
 		dao.consultarTodos();
 	}
-	
-	public void retornarUltimoID(){
+
+	public void retornarUltimoID() {
 		CursoInformaticaDAO dao = new CursoInformaticaDAO();
 		dao.retornarUltimoID();
 	}
-	
+
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CursoInformatica other = (CursoInformatica) obj;
+		if (nomeInfo == null) {
+			if (other.nomeInfo != null)
+				return false;
+		} else if (!nomeInfo.equals(other.nomeInfo))
+			return false;
+		if (codigoInformatica != other.codigoInformatica) {
+			return false;
+		}
+		return true;
+	}
 
 }

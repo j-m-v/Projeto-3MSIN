@@ -1,7 +1,7 @@
 package model;
-import javax.swing.JOptionPane;
 
-import daos.CursoArtesDAO;
+
+import dao.CursoArtesDAO;
 import to.CursoArtesTO;
 
 public class CursoArtes {
@@ -28,10 +28,10 @@ public class CursoArtes {
 		descricaoMaterial = "";
 	}
 
-	public CursoArtes(int codigo, String nomArtes, String dataInicio, String dataTermino, String horarioPrevisto,
+	public CursoArtes(int codigo, String nomeArtes, String dataInicio, String dataTermino, String horarioPrevisto,
 			int numeroVagas, double valorCurso, String livros, String descMaterial) {
 		this.codigoArtes = codigo;
-		this.nomeArtes = nomArtes;
+		this.nomeArtes = nomeArtes;
 		this.livros = livros;
 		this.dataInicio = dataInicio;
 		this.dataTermino = dataTermino;
@@ -130,19 +130,9 @@ public class CursoArtes {
 		this.descricaoMaterial = descricaoMaterial;
 	}
 
-	// DADOS CURSOARTES
-	public void dados() {
-		String msg = "Código: " + codigoArtes + "\nNome: " + nomeArtes + "\nData Inicio: " + dataInicio
-				+ "\nData Termino: " + dataTermino + "\nHorário: " + horarioPrevisto + "\nNº Vagas: " + numeroVagas
-				+ "\nValor: " + valorCurso + "\nDescrição Material:" + descricaoMaterial + "\nLivros: " + livros;
-
-		JOptionPane.showMessageDialog(null, msg);
-	}
-
 	public void incluir() {
 		CursoArtesDAO dao = new CursoArtesDAO();
 		CursoArtesTO to = new CursoArtesTO();
-		to.setCodigoArtes(codigoArtes);
 		to.setNomeArtes(nomeArtes);
 		to.setDataInicio(dataInicio);
 		to.setDataTermino(dataTermino);
@@ -152,11 +142,13 @@ public class CursoArtes {
 		to.setLivros(livros);
 		to.setDescricaoMaterial(descricaoMaterial);
 		dao.incluir(to);
+		setCodigoArtes(to.getCodigoArtes());
 	}
 
 	public void alterar() {
 		CursoArtesDAO dao = new CursoArtesDAO();
 		CursoArtesTO to = new CursoArtesTO();
+		to.setCodigoArtes(codigoArtes);
 		to.setNomeArtes(nomeArtes);
 		to.setDataInicio(dataInicio);
 		to.setDataTermino(dataTermino);
@@ -180,7 +172,7 @@ public class CursoArtes {
 		livros = to.getLivros();
 		descricaoMaterial = to.getDescricaoMaterial();
 	}
-	
+
 	public void deletar() {
 		CursoArtesDAO dao = new CursoArtesDAO();
 		CursoArtesTO to = new CursoArtesTO();
@@ -193,10 +185,28 @@ public class CursoArtes {
 		dao.consultarTodos();
 	}
 
-	public void retornarUltimoID(){
+	public void retornarUltimoID() {
 		CursoArtesDAO dao = new CursoArtesDAO();
 		dao.retornarUltimoID();
 	}
-	
+
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CursoArtes other = (CursoArtes) obj;
+		if (nomeArtes == null) {
+			if (other.nomeArtes != null)
+				return false;
+		} else if (!nomeArtes.equals(other.nomeArtes))
+			return false;
+		if (codigoArtes != other.codigoArtes) {
+			return false;
+		}
+		return true;
+	}
 
 }// fim da classe
