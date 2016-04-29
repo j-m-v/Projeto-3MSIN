@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-    <%@ page import="java.util.ArrayList, to.AlunoTO" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
      <!DOCTYPE html>
         <html lang="pt-br">
 
@@ -52,7 +52,7 @@
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="Listar_Alunos.html">Alunos</a></li>
+					<li><a href="ListarAlunos.html">Alunos</a></li>
 					<li><a href="#">Cursos Artes</a></li>
 					<li><a href="#">Cursos Informatica</a></li>
 					<li><a href="#">Matricula Artes</a></li>
@@ -83,48 +83,48 @@
                         </div>
 
                         <div class="col-md-3">
-                            <a href="Criar_Aluno.html" class="btn btn-primary pull-right h2">Novo Aluno</a>
+                            <a href="CriarAluno.jsp" class="btn btn-primary pull-right h2">Novo Aluno</a>
                         </div>
                     </div>
                     <!-- /#top -->
                 </form>
                 <hr />
+            <jsp:useBean id="lista" class="to.ListaAlunoTO" scope="request" />
+            <c:if test="${not empty lista}">
+                 <c:if test="${not empty lista.alunos}">
                 <div id="list" class="row">
-
                     <div class="table-responsive col-md-12">
                         <table class="table table-striped" cellspacing="0" cellpadding="0">
                             <thead>
                                 <tr>
                                     <th>ID</th>
                                     <th>Nome</th>
-                                    <th>E-mail</th>
+                                    <th>E-Mail</th>
                                     <th>Celular</th>
+                                    
                                     <th class="actions">Ações</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <% ArrayList<AlunoTO>lista = (ArrayList
-                                    <AlunoTO>)request.getAttribute("lista"); for(AlunoTO to:lista){ %>
-                                        <tr>
-                                            <td>
-                                                <%=to.getCodigo()%>
-                                            </td>
-                                            <td>
-                                                <%=to.getNome() %>
-                                            </td>
-                                            <td>
-                                                <%=to.getEmail() %>
-                                            </td>
-                                            <td>
-                                                <%=to.getTelefone() %>
-                                            </td>
-                                            <td class="actions">
-                                                <a class="btn btn-success btn-xs" href="ManterAluno.do?acao=Visualizar&id=<%=to.getCodigo()%>">Visualizar</a>
-                                                <a class="btn btn-warning btn-xs" href="ManterAluno.do?acao=Editar&id=<%=to.getCodigo()%>">Editar</a>
-                                                <button id="btn<%=to.getCodigo()%>" type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete-modal" data-aluno="<%=to.getCodigo()%>">Excluir</button>
-                                            </td>
-                                        </tr>
-                                        <% } %>
+                                <c:forEach var="aluno" items="${lista.alunos}">
+                                    <tr>
+                                        <td>${aluno.id }</td>
+                                        <td>
+                                            ${aluno.nome }
+                                        </td>
+                                        <td>
+                                            ${aluno.email }
+                                        </td>
+                                        <td>
+                                            ${aluno.telefone }
+                                        </td>
+                                        <td class="actions">
+                                            <a class="btn btn-success btn-xs" href="ManterAluno.do?acao=Visualizar&id=${aluno.id }">Visualizar</a>
+                                            <a class="btn btn-warning btn-xs" href="ManterAluno.do?acao=Editar&id=${aluno.id }">Editar</a>
+                                            <button id="btn${aluno.id }" type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete-modal" data-aluno="${aluno.id }">Excluir</button>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
 
                             </tbody>
                         </table>
@@ -132,8 +132,7 @@
                     </div>
                 </div>
                 <!-- /#list -->
-
-                <div id="bottom" class="row">
+         <div id="bottom" class="row">
                     <div class="col-md-12">
                         <!-- paginação ainda não foi implementada -->
                         <ul class="pagination">
@@ -153,7 +152,10 @@
                     </div>
                 </div>
                 <!-- /#bottom -->
-            </div>
+            </c:if>
+        </c:if>
+
+    </div>
              <!-- /#main -->
             <script src="js/jquery.min.js"></script>
             <script src="js/bootstrap.min.js"></script>

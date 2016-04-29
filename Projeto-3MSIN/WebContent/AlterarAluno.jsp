@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="to.AlunoTO"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -26,10 +26,8 @@
 	}
 </script>
 
-<%
-	AlunoTO to = (AlunoTO) request.getAttribute("aluno");
-%>
 <body>
+	 <jsp:useBean id="aluno" class="to.AlunoTO" scope="request" />
 	<!-- Barra superior com os menus de navegação -->
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container-fluid">
@@ -45,7 +43,7 @@
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="Listar_Alunos.html">Alunos</a></li>
+					<li><a href="ListarAlunos.jsp">Alunos</a></li>
 					<li><a href="#">Cursos Artes</a></li>
 					<li><a href="#">Cursos Informatica</a></li>
 					<li><a href="#">Matricula Artes</a></li>
@@ -57,11 +55,11 @@
 	</nav>
 	 <!-- Container Principal -->
 	<div id="main" class="container">
-		<h3 class="page-header">Alterar Aluno #<%=to.getCodigo() %></h3>
+		<h3 class="page-header">Alterar Aluno #${aluno.id}</h3>
 		<!-- Formulario para inclusao de Alunos -->
 		<form action="ManterAluno.do" method="post">
 			<!-- area de campos do form -->
-			 <input type="hidden" name="id" value="<%=to.getCodigo() %>" />
+			 <input type="hidden" name="id" value="${aluno.id }" />
 			<fieldset>
 				<legend>Dados Aluno</legend>
 				<div class="row">
@@ -69,7 +67,7 @@
 						<label for="nome">Nome</label> <input type="text"
 							class="form-control" name="nome" id="nome" required
 							maxlength="100"  pattern="[a-zA-Záéíóúç\s]+" placeholder="nome completo"
-							value="<%=to.getNome()%>">
+							value="${aluno.nome}">
 					</div>
 				</div>
 				<div class="row">
@@ -79,7 +77,7 @@
 							onkeypress="mascara(this, '###.###.###-##')" maxlength="14"
 							pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
 							placeholder="Ex:000.000.000-00"
-							value="<%=to.getCPF()%>">
+							value="${aluno.cpf}">
 					</div>
 
 					<div class="form-group col-md-2">
@@ -87,7 +85,7 @@
 							name="rg" id="rg" onkeypress="mascara(this, '##.###.###-#')"
 							maxlength="12" pattern="\d{2}\.\d{3}\.\d{3}-\d{1}"
 							placeholder="Ex: 11.111.111-1"
-							value="<%=to.getRG()%>">
+							value="${aluno.rg}">
 					</div>
 					<div class="form-group col-md-2">
 						<label for="dataNasc">Data de Nascimento</label> <input
@@ -95,7 +93,7 @@
 							onkeypress="mascara(this, '##/##/####')" maxlength="10"
 							pattern="[0-9]+[/]+[0-9]+[/]+[0-9]+$"
 							placeholder="Ex: 11/11/1111"
-							value="<%=to.getDataNasc()%>">
+							value="${aluno.dataNascimento}">
 					</div>
 				</div>
 				<div class="row">
@@ -104,13 +102,13 @@
 							class="form-control" name="telefone" id="telefone" maxlength="15"
 							pattern="(?:\(\d{2}\)|\d{2})[- ]?\d{5}[- ]?\d{4}"
 							placeholder="Ex: (99) 99999-9999"
-							value="<%=to.getTelefone()%>">
+							value="${aluno.telefone}">
 					</div>
 					<div class="form-group col-md-4">
 						<label for="email">E-Mail</label> <input type="email"
 							class="form-control" name="email" id="email" required
 							maxlength="60" placeholder="email obrigatório"
-							value="<%=to.getEmail()%>">
+							value="${aluno.email}">
 					</div>
 				</div>
 			</fieldset>
@@ -121,14 +119,14 @@
 						<label for="telefone">Endereço</label> <input type="text"
 							class="form-control" name="endereco" id="endereco" required
 							maxlength="100" placeholder="Informe o endereço: Rua, n°, Bairro"
-							value="<%=to.getEndereco()%>">
+							value="${aluno.endereco}">
 					</div>
 					<div class="form-group col-md-2">
 						<label for="cep">CEP</label> <input type="text"
 							class="form-control" name="cep" id="cep"
 							onkeypress="mascara(this, '#####-##')" maxlength="8"
 							pattern="\d{5}\-\d{2}" placeholder="Ex: 00000-00"
-							value="<%=to.getCEP()%>">
+							value="${aluno.cep}">
 					</div>
 				</div>
 				<div class="row">
@@ -137,14 +135,14 @@
 							class="form-control" name="cidade" id="cidade" required
 							maxlength="60"  pattern="[a-zA-Záéíóúç\s]+"
 							placeholder="Informe a cidade"
-							value="<%=to.getCidade()%>">
+							value="${aluno.cidade}">
 					</div>
 					<div class="form-group col-md-2">
 
 						<label for="estado">Estado</label> 
 						<select class="form-control"
 							name="estado" id="estado">
-							<option value="<%=to.getEstado()%>"></option>
+							<option value="${aluno.estado}"></option>
 							<option value="AC">AC</option>
 							<option value="AL">AL</option>
 							<option value="AM">AM</option>
@@ -181,7 +179,7 @@
 				<div class="col-md-12">
 					<button type="submit" class="btn btn-primary" name="acao"
 						value="Alterar">Salvar</button>
-					<a href="Listar_Alunos.html" class="btn btn-default">Cancelar</a>
+					<a href="ListarAlunos.jsp" class="btn btn-default">Cancelar</a>
 				</div>
 			</div>
 		</form>

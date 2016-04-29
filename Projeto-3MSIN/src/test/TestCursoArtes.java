@@ -22,15 +22,15 @@ public class TestCursoArtes {
 	@Test
 	public void testIncluir() {
 		curso.incluir();
-		copia.setCodigoArtes(curso.getCodigoArtes());
+		copia.setId(curso.getId());
 		copia.consultar();
 		assertEquals(curso, copia);
 	}
 
 	@Test
 	public void testAlterar() {
-		curso.setNomeArtes("Memórias Postumas de Bras Cubas");
-		copia.setNomeArtes("Memórias Postumas de Bras Cubas");
+		curso.setNome("Memórias Postumas de Bras Cubas");
+		copia.setNome("Memórias Postumas de Bras Cubas");
 		curso.alterar();
 		assertEquals(curso, copia);
 	}
@@ -38,9 +38,9 @@ public class TestCursoArtes {
 	@Test
 	public void testDeletar() {
 		curso.setDescricaoMaterial(null);;
-		curso.setNomeArtes(null);
+		curso.setNome(null);
 		copia.setDescricaoMaterial(null);;
-		copia.setNomeArtes(null);
+		copia.setNome(null);
 		curso.deletar();
 		assertEquals(curso, copia);
 	}

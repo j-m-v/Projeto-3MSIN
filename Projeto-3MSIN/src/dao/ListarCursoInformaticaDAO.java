@@ -8,26 +8,29 @@ import java.util.ArrayList;
 
 import factory.ConnectionFactory;
 import to.CursoInformaticaTO;
+import to.ListaCursoInformaticaTO;
 
 public class ListarCursoInformaticaDAO {
-	public ArrayList<CursoInformaticaTO> listarCursos() {
+	
+	public ListaCursoInformaticaTO listarCursos() {
 		CursoInformaticaTO to;
 		ArrayList<CursoInformaticaTO> lista = new ArrayList<>();
-		String sqlSelect = "SELECT * FROM Informatica";
+		String sqlSelect = "SELECT * FROM CursoInformatica";
 		// usando o try with resources do Java 7, que fecha o que abriu
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
 			try (ResultSet rs = stm.executeQuery();) {
 				while(rs.next()) {
 					to = new CursoInformaticaTO();
-					to.setCodigoInformatica(rs.getInt("codigoCursoInfo"));
-					to.setNome(rs.getString("nomeCurso"));
+					to.setId(rs.getInt("id"));
+					to.setNome(rs.getString("nomeInformatica"));
 					to.setDataInicio(rs.getString("dataInicio"));
-					to.setHorarioPrevisto(rs.getString("horarioPrevisto"));
-					to.setNumeroVagas(rs.getInt("numeroDeVagas"));
-					to.setValorCurso(rs.getDouble("valorCurso"));
-					to.setSoftwares(rs.getString("descricaoSoftware"));
-					to.setNumeroLaboratorios(rs.getString("numeroLaboratorios"));
+					to.setDataTermino(rs.getString("dataTermino"));
+					to.setHorario(rs.getString("horario"));
+					to.setVagas(rs.getInt("vagas"));
+					to.setValor(rs.getDouble("valor"));
+					to.setSoftwares(rs.getString("softwares"));
+					to.setNumeroLaboratorios(rs.getString("numLab"));
 					lista.add(to);
 				}
 			} catch (SQLException e) {
@@ -36,13 +39,15 @@ public class ListarCursoInformaticaDAO {
 		} catch (SQLException e1) {
 			System.out.print(e1.getStackTrace());
 		}
-		return lista;
+		ListaCursoInformaticaTO lci = new ListaCursoInformaticaTO();
+		lci.setCursosInformatica(lista);
+		return lci;
 	}
 	
-	public ArrayList<CursoInformaticaTO> listarCursos(String chave) {
+	public ListaCursoInformaticaTO listarCursos(String chave) {
 		CursoInformaticaTO to;
 		ArrayList<CursoInformaticaTO> lista = new ArrayList<>();
-		String sqlSelect = "SELECT * FROM Informatica where upper(nomeCurso) like ?";
+		String sqlSelect = "SELECT * FROM CursoInformatica where upper(nomeInformatica) like ?";
 		// usando o try with resources do Java 7, que fecha o que abriu
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
@@ -50,14 +55,15 @@ public class ListarCursoInformaticaDAO {
 			try (ResultSet rs = stm.executeQuery();) {
 				while(rs.next()) {
 					to = new CursoInformaticaTO();
-					to.setCodigoInformatica(rs.getInt("codigoCursoInfo"));
-					to.setNome(rs.getString("nomeCurso"));
+					to.setId(rs.getInt("id"));
+					to.setNome(rs.getString("nomeInformatica"));
 					to.setDataInicio(rs.getString("dataInicio"));
-					to.setHorarioPrevisto(rs.getString("horarioPrevisto"));
-					to.setNumeroVagas(rs.getInt("numeroDeVagas"));
-					to.setValorCurso(rs.getDouble("valorCurso"));
-					to.setSoftwares(rs.getString("descricaoSoftware"));
-					to.setNumeroLaboratorios(rs.getString("numeroLaboratorios"));
+					to.setDataTermino(rs.getString("dataTermino"));
+					to.setHorario(rs.getString("horario"));
+					to.setVagas(rs.getInt("vagas"));
+					to.setValor(rs.getDouble("valor"));
+					to.setSoftwares(rs.getString("softwares"));
+					to.setNumeroLaboratorios(rs.getString("numLab"));
 					lista.add(to);
 				}
 			} catch (SQLException e) {
@@ -66,7 +72,9 @@ public class ListarCursoInformaticaDAO {
 		} catch (SQLException e1) {
 			System.out.print(e1.getStackTrace());
 		}
-		return lista;
+		ListaCursoInformaticaTO lci = new ListaCursoInformaticaTO();
+		lci.setCursosInformatica(lista);
+		return lci;
 	}
 
 }

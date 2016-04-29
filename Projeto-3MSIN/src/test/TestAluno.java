@@ -23,7 +23,7 @@ public class TestAluno {
 	@Test
 	public void testIncluir() {
 		aluno.incluir();	
-		copia.setCodigo(aluno.getCodigo());
+		copia.setId(aluno.getId());
 		copia.consultar();
 		assertEquals(aluno, copia);
 	}

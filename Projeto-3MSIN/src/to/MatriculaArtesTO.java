@@ -2,33 +2,37 @@ package to;
 
 public class MatriculaArtesTO {
 	// atributos
-		private int codigoMatricula;
-		private int codigoAluno;
-		private int codigoCurso;
-		private String dataMatricula;
-		private double valorMatricula;
+		private int id;
+		private int idAluno;
+		private String nomeAluno;
+		private int idCurso;
+		private String nomeArtes;
+		private String data;
+		private double valor;
 		private String statusMatricula;
 		private String statusPagamento;
 
 
-		public int getCodigoMatricula() {
-			return codigoMatricula;
+		public int getId() {
+			return id;
 		}
 
-		public int getCodigoAluno() {
-			return codigoAluno;
+		public int getIdAluno() {
+			return idAluno;
+		}
+		
+		
+
+		public int getIdCurso() {
+			return idCurso;
 		}
 
-		public int getCodigoCurso() {
-			return codigoCurso;
+		public String getData() {
+			return data;
 		}
 
-		public String getDataMatricula() {
-			return dataMatricula;
-		}
-
-		public double getValorMatricula() {
-			return valorMatricula;
+		public double getValor() {
+			return valor;
 		}
 
 		public String getStatusMatricula() {
@@ -39,24 +43,24 @@ public class MatriculaArtesTO {
 			return statusPagamento;
 		}
 
-		public void setCodigoMatricula(int codigoMatricula) {
-			this.codigoMatricula = codigoMatricula;
+		public void setId(int codigoMatricula) {
+			this.id = codigoMatricula;
 		}
 
-		public void setCodigoAluno(int codigoAluno) {
-			this.codigoAluno = codigoAluno;
+		public void setIdAluno(int codigoAluno) {
+			this.idAluno = codigoAluno;
 		}
 
-		public void setCodigoCurso(int codigoCurso) {
-			this.codigoCurso = codigoCurso;
+		public void setIdCurso(int codigoCurso) {
+			this.idCurso = codigoCurso;
 		}
 
-		public void setDataMatricula(String dataMatricula) {
-			this.dataMatricula = dataMatricula;
+		public void setData(String dataMatricula) {
+			this.data = dataMatricula;
 		}
 
-		public void setValorMatricula(double valorMatricula) {
-			this.valorMatricula = valorMatricula;
+		public void setValor(double valorMatricula) {
+			this.valor = valorMatricula;
 		}
 
 		public void setStatusMatricula(String statusMatricula) {
@@ -65,5 +69,21 @@ public class MatriculaArtesTO {
 
 		public void setStatusPagamento(String statusPagamento) {
 			this.statusPagamento = statusPagamento;
+		}
+
+		public String getNomeAluno() {
+			return nomeAluno;
+		}
+
+		public void setNomeAluno(String nomeAluno) {
+			this.nomeAluno = nomeAluno;
+		}
+
+		public String getNomeArtes() {
+			return nomeArtes;
+		}
+
+		public void setNomeCurso(String nomeArtes) {
+			this.nomeArtes = nomeArtes;
 		}
 }

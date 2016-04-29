@@ -10,21 +10,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 import model.CursoArtes;
 import to.CursoArtesTO;
-
+import to.ListaCursoArtesTO;
+import to.ListaCursoInformaticaTO;
 
 @WebServlet("/ManterCursoArtes.do")
-public class ManterCursoArtesController extends HttpServlet  {
+public class ManterCursoArtesController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doPost(request, response);
 	}
 
@@ -32,8 +32,9 @@ public class ManterCursoArtesController extends HttpServlet  {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		String pCodigo = request.getParameter("id");
 		String pAcao = request.getParameter("acao");
 		String pNome = request.getParameter("nome");
@@ -57,37 +58,35 @@ public class ManterCursoArtesController extends HttpServlet  {
 		} catch (NumberFormatException e) {
 		}
 
-
 		CursoArtes cursoArtes = new CursoArtes(codigo, pNome, pDataInicio, pDataTermino, pHorarioPrevisto, vagas, valor,
 				pLivros, pDescricaoMaterial);
 		RequestDispatcher view = null;
-		
-		  if (pAcao.equals("Criar")) {	
+
+		if (pAcao.equals("Criar")) {
 			cursoArtes.incluir();
 			ArrayList<CursoArtesTO> lista = new ArrayList<>();
 			lista.add(cursoArtes.getTO());
-			request.setAttribute("lista", lista);
+			ListaCursoArtesTO art = new ListaCursoArtesTO();
+			request.setAttribute("lista", art);
 			view = request.getRequestDispatcher("ListarCursoArtes.jsp");
 		} else if (pAcao.equals("Excluir")) {
 			cursoArtes.deletar();
-			view = request.getRequestDispatcher("Listar_CursoArtes.html");			
+			view = request.getRequestDispatcher("ListarCursoArtes.jsp");
 		} else if (pAcao.equals("Alterar")) {
 			cursoArtes.alterar();
-			request.setAttribute("Curso", cursoArtes.getTO());
-			view = request.getRequestDispatcher("VisualizarCursoArtes.jsp");			
+			request.setAttribute("artes", cursoArtes.getTO());
+			view = request.getRequestDispatcher("VisualizarCursoArtes.jsp");
 		} else if (pAcao.equals("Visualizar")) {
 			cursoArtes.consultar();
-			request.setAttribute("Curso", cursoArtes.getTO());
-			view = request.getRequestDispatcher("VisualizarCursoArtes.jsp");		
+			request.setAttribute("artes", cursoArtes.getTO());
+			view = request.getRequestDispatcher("VisualizarCursoArtes.jsp");
 		} else if (pAcao.equals("Editar")) {
 			cursoArtes.alterar();
-			request.setAttribute("cliente", cursoArtes.getTO());
-			view = request.getRequestDispatcher("AlterarCursoArtes.jsp");		
+			request.setAttribute("artes", cursoArtes.getTO());
+			view = request.getRequestDispatcher("AlterarCursoArtes.jsp");
 		}
-		
-		view.forward(request, response);
 
-		
+		view.forward(request, response);
 
 	}
 

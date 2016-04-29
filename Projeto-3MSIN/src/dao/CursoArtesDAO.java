@@ -9,21 +9,19 @@ import factory.ConnectionFactory;
 
 public class CursoArtesDAO {
 
-	private String dados[][];
-
 	// incluir
 	public void incluir(CursoArtesTO to) {
 
-		String sqlInsert = "INSERT INTO Artes (nomeCurso, dataInicio, dataTermino, horarioPrevisto, numeroDeVagas, valorCurso, livros, descricaoMaterial ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+		String sqlInsert = "INSERT INTO CursoArtes (nomeArtes, dataInicio, dataTermino, horario, vagas, valor, livros, material ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement st = conn.prepareStatement(sqlInsert);) {
-			st.setString(1, to.getNomeArtes());
+			st.setString(1, to.getNome());
 			st.setString(2, to.getDataInicio());
 			st.setString(3, to.getDataTermino());
-			st.setString(4, to.getHorarioPrevisto());
-			st.setInt(5, to.getNumeroVagas());
-			st.setDouble(6, to.getValorCurso());
+			st.setString(4, to.getHorario());
+			st.setInt(5, to.getVagas());
+			st.setDouble(6, to.getValor());
 			st.setString(7, to.getLivros());
 			st.setString(8, to.getDescricaoMaterial());
 			st.execute();
@@ -32,7 +30,7 @@ public class CursoArtesDAO {
 			try(PreparedStatement stm1 = conn.prepareStatement(sqlSelect);
 					ResultSet rs = stm1.executeQuery();){
 					if(rs.next()){
-						to.setCodigoArtes(rs.getInt(1));
+						to.setId(rs.getInt(1));
 					}
 			}
 
@@ -44,19 +42,19 @@ public class CursoArtesDAO {
 	// alterar
 	public void alterar(CursoArtesTO to) {
 
-		String sqlUpdate = "UPDATE Artes SET nomeCurso = ?, dataInicio = ?, dataTermino = ?, horarioPrevisto = ?, numeroDeVagas = ?, valorCurso = ?, livros = ?, descricaoMaterial = ? WHERE codigoCursoArt = ?";
+		String sqlUpdate = "UPDATE CursoArtes SET nomeArtes = ?, dataInicio = ?, dataTermino = ?, horario = ?, vagas = ?, valor = ?, livros = ?, material = ? WHERE idArtes = ?";
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement st = conn.prepareStatement(sqlUpdate);) {
 
-			st.setString(1, to.getNomeArtes());
+			st.setString(1, to.getNome());
 			st.setString(2, to.getDataInicio());
 			st.setString(3, to.getDataTermino());
-			st.setString(4, to.getHorarioPrevisto());
-			st.setInt(5, to.getNumeroVagas());
-			st.setDouble(6, to.getValorCurso());
+			st.setString(4, to.getHorario());
+			st.setInt(5, to.getVagas());
+			st.setDouble(6, to.getValor());
 			st.setString(7, to.getLivros());
 			st.setString(8, to.getDescricaoMaterial());
-			st.setInt(9, to.getCodigoArtes());
+			st.setInt(9, to.getId());
 			st.execute();
 
 		} catch (SQLException e) {
@@ -68,7 +66,7 @@ public class CursoArtesDAO {
 	public CursoArtesTO consultar(int id) {
 		CursoArtesTO to = new CursoArtesTO();
 
-		String sqlSelect = "SELECT * FROM Artes WHERE codigoCursoArt = ?";
+		String sqlSelect = "SELECT * FROM CursoArtes WHERE idArtes = ?";
 
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement st = conn.prepareStatement(sqlSelect);) {
@@ -76,14 +74,14 @@ public class CursoArtesDAO {
 			st.setInt(1, id);
 			try (ResultSet rs = st.executeQuery();) {
 				if (rs.next()) {
-					to.setNomeArtes(rs.getString("nomeCurso"));
+					to.setNome(rs.getString("nome"));
 					to.setDataInicio(rs.getString("dataInicio"));
 					to.setDataTermino(rs.getString("dataTermino"));
-					to.setHorarioPrevisto(rs.getString("horarioPrevisto"));
-					to.setNumeroVagas(rs.getInt("numeroDeVagas"));
-					to.setValorCurso(rs.getDouble("valorCurso"));
+					to.setHorario(rs.getString("horario"));
+					to.setVagas(rs.getInt("vagas"));
+					to.setValor(rs.getDouble("valor"));
 					to.setLivros(rs.getString("livros"));
-					to.setDescricaoMaterial(rs.getString("descricaoMaterial"));
+					to.setDescricaoMaterial(rs.getString("material"));
 				} // fim do if
 
 			} catch (SQLException e) {
@@ -97,87 +95,14 @@ public class CursoArtesDAO {
 
 	public void deletar(CursoArtesTO to) {
 
-		String sqlDelete = "DELETE FROM Artes WHERE codigoCursoArt = ?";
+		String sqlDelete = "DELETE FROM CursoArtes WHERE idArtes = ?";
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement st = conn.prepareStatement(sqlDelete);) {
 
-			st.setInt(1, to.getCodigoArtes());
+			st.setInt(1, to.getId());
 			st.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	}
-
-	// listar todos cursos
-	public String[][] consultarTodos() {
-		int codigo = 0;
-		int numeroVagas = 0;
-		double valorCurso = 0;
-		String nomeArtes, dataIni, dataTer, horarioPrevisto, livros, descricaoMaterial;
-
-		String sqlTable = "SELECT * FROM Artes ORDER BY codigoCursoArt";
-		try (Connection conn = ConnectionFactory.obtemConexao();
-				PreparedStatement st = conn.prepareStatement(sqlTable);) {
-
-			try (ResultSet rs = st.executeQuery();) {
-				int linha = 0;
-
-				while (rs.next()) {
-					codigo = rs.getInt("codigoCursoArt");
-					nomeArtes = rs.getString("nomeCurso");
-					dataIni = rs.getString("dataInicio");
-					dataTer = rs.getString("dataTermino");
-					horarioPrevisto = rs.getString("horarioPrevisto");
-					numeroVagas = rs.getInt("numeroDeVagas");
-					valorCurso = rs.getDouble("valorCurso");
-					livros = rs.getString("livros");
-					descricaoMaterial = rs.getString("descricaoMaterial");
-
-					dados[linha][0] = String.valueOf(codigo);
-					dados[linha][1] = String.valueOf(nomeArtes);
-					dados[linha][2] = String.valueOf(dataIni);
-					dados[linha][3] = String.valueOf(dataTer);
-					dados[linha][4] = String.valueOf(horarioPrevisto);
-					dados[linha][5] = String.valueOf(numeroVagas);
-					dados[linha][6] = String.valueOf(valorCurso);
-					dados[linha][7] = String.valueOf(livros);
-					dados[linha][8] = String.valueOf(descricaoMaterial);
-
-					linha++;
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		} catch (SQLException e1) {
-			System.out.print(e1.getStackTrace());
-		}
-
-		return dados;
-	}
-
-	// método para retornar o id do último curso cadastrado
-	public int retornarUltimoID() {
-
-		int cod = 0;
-
-		String sqlUltimoID = " SELECT MAX(codigoCursoArt) AS codigoCursoArt from Artes";
-
-		try (Connection conn = ConnectionFactory.obtemConexao();
-				PreparedStatement st = conn.prepareStatement(sqlUltimoID);) {
-
-			try (ResultSet rs = st.executeQuery();) {
-
-				if (rs.next()) {
-					cod = rs.getInt("codigoCursoArt");
-				}
-
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		} catch (SQLException e1) {
-			System.out.print(e1.getStackTrace());
-		}
-
-		return cod;
 	}
 }// fim da classe

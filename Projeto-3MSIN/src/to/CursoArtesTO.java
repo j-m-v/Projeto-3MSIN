@@ -1,24 +1,24 @@
 package to;
 
 public class CursoArtesTO {
-	public int codigoArtes;
-	private String nomeArtes;
+	public int id;
+	private String nome;
 	private String livros;
 	private String dataInicio;
 	private String dataTermino;
-	private String horarioPrevisto;
-	private int numeroVagas;
-	private double valorCurso;
+	private String horario;
+	private int vagas;
+	private double valor;
 	private String descricaoMaterial;
 
 	// MÉTODOS DE ACESSO
 
-	public int getCodigoArtes() {
-		return codigoArtes;
+	public int getId() {
+		return id;
 	}
 
-	public String getNomeArtes() {
-		return nomeArtes;
+	public String getNome() {
+		return nome;
 	}
 
 	public String getLivros() {
@@ -33,16 +33,16 @@ public class CursoArtesTO {
 		return dataTermino;
 	}
 
-	public String getHorarioPrevisto() {
-		return horarioPrevisto;
+	public String getHorario() {
+		return horario;
 	}
 
-	public int getNumeroVagas() {
-		return numeroVagas;
+	public int getVagas() {
+		return vagas;
 	}
 
-	public double getValorCurso() {
-		return valorCurso;
+	public double getValor() {
+		return valor;
 	}
 
 	public String getDescricaoMaterial() {
@@ -50,12 +50,12 @@ public class CursoArtesTO {
 	}
 
 	// MODIFICADORES
-	public void setCodigoArtes(int codigoArtes) {
-		this.codigoArtes = codigoArtes;
+	public void setId(int codigoArtes) {
+		this.id = codigoArtes;
 	}
 
-	public void setNomeArtes(String nomeArtes) {
-		this.nomeArtes = nomeArtes;
+	public void setNome(String nomeArtes) {
+		this.nome = nomeArtes;
 	}
 
 	public void setLivros(String livros) {
@@ -70,16 +70,16 @@ public class CursoArtesTO {
 		this.dataTermino = dataTermino;
 	}
 
-	public void setHorarioPrevisto(String horarioPrevisto) {
-		this.horarioPrevisto = horarioPrevisto;
+	public void setHorario(String horarioPrevisto) {
+		this.horario = horarioPrevisto;
 	}
 
-	public void setNumeroVagas(int vagas) {
-		this.numeroVagas = vagas;
+	public void setVagas(int vagas) {
+		this.vagas = vagas;
 	}
 
-	public void setValorCurso(double valor) {
-		this.valorCurso = valor;
+	public void setValor(double valor) {
+		this.valor = valor;
 	}
 
 	public void setDescricaoMaterial(String descricaoMaterial) {

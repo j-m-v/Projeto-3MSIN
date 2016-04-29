@@ -9,8 +9,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import model.Aluno;
 import to.AlunoTO;
+import to.ListaAlunoTO;
 
 @WebServlet("/ManterAluno.do")
 public class ManterAlunoController extends HttpServlet {
@@ -31,6 +33,7 @@ public class ManterAlunoController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		String pAcao = request.getParameter("acao");
 		String pCodigo = request.getParameter("id");
 		String pNome = request.getParameter("nome");
@@ -51,26 +54,28 @@ public class ManterAlunoController extends HttpServlet {
 		}
 
 		Aluno aluno = new Aluno(codigo, pNome, pCPF, pRG, pDataNasc, pTelefone, pEmail, pCEP, pEndereco, pCidade,
-				pEstado);
+				                pEstado);
 		RequestDispatcher view = null;
 
 		if (pAcao.equals("Criar")) {
 			aluno.incluir();
 			ArrayList<AlunoTO> lista = new ArrayList<>();
 			lista.add(aluno.getTO());
-			request.setAttribute("lista", lista);
+			ListaAlunoTO listaAluno = new ListaAlunoTO();
+			listaAluno.setAlunos(lista);
+			request.setAttribute("lista", listaAluno);
 			view = request.getRequestDispatcher("ListarAlunos.jsp");
 		} else if (pAcao.equals("Excluir")) {
 			aluno.deletar();
-			view = request.getRequestDispatcher("Listar_Alunos.html");
+			view = request.getRequestDispatcher("ListarAlunos.jsp");
 		} else if (pAcao.equals("Alterar")) {
 			aluno.alterar();
 			request.setAttribute("aluno", aluno.getTO());
-			view = request.getRequestDispatcher("VisualizarAluno.jsp");
+			view = request.getRequestDispatcher("ConsultarAluno.jsp");
 		} else if (pAcao.equals("Visualizar")) {
 			aluno.consultar();
 			request.setAttribute("aluno", aluno.getTO());
-			view = request.getRequestDispatcher("VisualizarAluno.jsp");
+			view = request.getRequestDispatcher("ConsultarAluno.jsp");
 		} else if (pAcao.equals("Editar")) {
 			aluno.consultar();
 			request.setAttribute("aluno", aluno.getTO());

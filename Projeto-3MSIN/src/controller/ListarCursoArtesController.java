@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,15 +8,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.ListarCursoArtes;
-import to.CursoArtesTO;
+import model.ListaCursoArtes;
+import to.ListaCursoArtesTO;
 
 /**
  * Servlet implementation class ListarClientesController
  * @param <RequestDispatcher>
  */
-@WebServlet("/Listar_CursoArtes.do")
-public class ListarCursoArtesController<RequestDispatcher> extends HttpServlet {
+@WebServlet("Listar_cursoArtes.do")
+public class ListarCursoArtesController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -25,13 +24,14 @@ public class ListarCursoArtesController<RequestDispatcher> extends HttpServlet {
 	 */
 	
 		protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			request.setCharacterEncoding("utf-8");
 			String chave = request.getParameter("data[search]");
-			ListarCursoArtes cursoArtes = new ListarCursoArtes();
-			ArrayList<CursoArtesTO> lista;
+			ListaCursoArtes artes = new ListaCursoArtes();
+			ListaCursoArtesTO lista;
 			if(chave != null && chave.length() > 0){
-				lista = cursoArtes.listarCursos(chave);
-			} else {
-				lista = cursoArtes.listarCursos();
+				lista = artes.listarCursosArtes(chave);
+			}else{	
+				lista = artes.listarCursosArtes();
 			}
 			request.setAttribute("lista", lista);
 		javax.servlet.RequestDispatcher dispatcher = request.

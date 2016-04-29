@@ -19,15 +19,15 @@ public class TestMatriculaInformatica {
 	@Test
 	public void testIncluir() {
 		matricula.incluir();
-		copia.setCodigoMatricula(matricula.getCodigoMatricula());
+		copia.setId(matricula.getId());
 		copia.consultar();
 		assertEquals(matricula, copia);
 	}
 
 	@Test
 	public void testAlterar() {
-		matricula.setDataMatricula("19/02/2018");
-		copia.setDataMatricula("19/02/2018");
+		matricula.setData("19/02/2018");
+		copia.setData("19/02/2018");
 		matricula.alterar();
 		assertEquals(matricula, copia);
 	}

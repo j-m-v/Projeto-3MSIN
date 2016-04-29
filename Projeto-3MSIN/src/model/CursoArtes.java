@@ -5,64 +5,64 @@ import dao.CursoArtesDAO;
 import to.CursoArtesTO;
 
 public class CursoArtes {
-	public int codigoArtes;
-	private String nomeArtes;
+	public int id;
+	private String nome;
 	private String livros;
 	private String dataInicio;
 	private String dataTermino;
-	private String horarioPrevisto;
-	private int numeroVagas;
-	private double valorCurso;
+	private String horario;
+	private int vagas;
+	private double valor;
 	private String descricaoMaterial;
 
 	public CursoArtes() {
 
-		codigoArtes = 0;
-		nomeArtes = "";
+		id = 0;
+		nome = "";
 		livros = "";
 		dataInicio = "";
 		dataTermino = "";
-		horarioPrevisto = "";
-		numeroVagas = 0;
-		valorCurso = 0.0;
+		horario = "";
+		vagas = 0;
+		valor = 0.0;
 		descricaoMaterial = "";
 	}
 
 	public CursoArtes(int codigo, String nomeArtes, String dataInicio, String dataTermino, String horarioPrevisto,
 			int numeroVagas, double valorCurso, String livros, String descMaterial) {
-		this.codigoArtes = codigo;
-		this.nomeArtes = nomeArtes;
+		this.id = codigo;
+		this.nome = nomeArtes;
 		this.livros = livros;
 		this.dataInicio = dataInicio;
 		this.dataTermino = dataTermino;
-		this.horarioPrevisto = horarioPrevisto;
-		this.numeroVagas = numeroVagas;
-		this.valorCurso = valorCurso;
+		this.horario = horarioPrevisto;
+		this.vagas = numeroVagas;
+		this.valor = valorCurso;
 		this.descricaoMaterial = descMaterial;
 	}
 
 	public CursoArtes(String nomArtes, String livros, String dataInicio, String dataTermino, String horarioPrevisto,
 			int numeroVagas, double valorCurso, String descMaterial) {
 
-		this.nomeArtes = nomArtes;
+		this.nome = nomArtes;
 		this.livros = livros;
 		this.dataInicio = dataInicio;
 		this.dataTermino = dataTermino;
-		this.horarioPrevisto = horarioPrevisto;
-		this.numeroVagas = numeroVagas;
-		this.valorCurso = valorCurso;
+		this.horario = horarioPrevisto;
+		this.vagas = numeroVagas;
+		this.valor = valorCurso;
 		this.descricaoMaterial = descMaterial;
 
 	}
 
 	// MÉTODOS DE ACESSO
 
-	public int getCodigoArtes() {
-		return codigoArtes;
+	public int getId() {
+		return id;
 	}
 
-	public String getNomeArtes() {
-		return nomeArtes;
+	public String getNome() {
+		return nome;
 	}
 
 	public String getLivros() {
@@ -77,16 +77,16 @@ public class CursoArtes {
 		return dataTermino;
 	}
 
-	public String getHorarioPrevisto() {
-		return horarioPrevisto;
+	public String getHorario() {
+		return horario;
 	}
 
-	public int getNumeroVagas() {
-		return numeroVagas;
+	public int getVagas() {
+		return vagas;
 	}
 
-	public double getValorCurso() {
-		return valorCurso;
+	public double getValor() {
+		return valor;
 	}
 
 	public String getDescricaoMaterial() {
@@ -94,12 +94,12 @@ public class CursoArtes {
 	}
 
 	// MODIFICADORES
-	public void setCodigoArtes(int codigoArtes) {
-		this.codigoArtes = codigoArtes;
+	public void setId(int codigoArtes) {
+		this.id = codigoArtes;
 	}
 
-	public void setNomeArtes(String nomeArtes) {
-		this.nomeArtes = nomeArtes;
+	public void setNome(String nomeArtes) {
+		this.nome = nomeArtes;
 	}
 
 	public void setLivros(String livros) {
@@ -114,16 +114,16 @@ public class CursoArtes {
 		this.dataTermino = dataTermino;
 	}
 
-	public void setHorarioPrevisto(String horarioPrevisto) {
-		this.horarioPrevisto = horarioPrevisto;
+	public void setHorario(String horarioPrevisto) {
+		this.horario = horarioPrevisto;
 	}
 
-	public void setNumeroVagas(int vagas) {
-		this.numeroVagas = vagas;
+	public void setVagas(int vagas) {
+		this.vagas = vagas;
 	}
 
-	public void setValorCurso(double valor) {
-		this.valorCurso = valor;
+	public void setValor(double valor) {
+		this.valor = valor;
 	}
 
 	public void setDescricaoMaterial(String descricaoMaterial) {
@@ -133,27 +133,27 @@ public class CursoArtes {
 	public void incluir() {
 		CursoArtesDAO dao = new CursoArtesDAO();
 		CursoArtesTO to = new CursoArtesTO();
-		to.setNomeArtes(nomeArtes);
+		to.setNome(nome);
 		to.setDataInicio(dataInicio);
 		to.setDataTermino(dataTermino);
-		to.setHorarioPrevisto(horarioPrevisto);
-		to.setNumeroVagas(numeroVagas);
-		to.setValorCurso(valorCurso);
+		to.setHorario(horario);
+		to.setVagas(vagas);
+		to.setValor(valor);
 		to.setLivros(livros);
 		to.setDescricaoMaterial(descricaoMaterial);
 		dao.incluir(to);
-		setCodigoArtes(to.getCodigoArtes());
+		setId(to.getId());
 	}
    
 	public CursoArtesTO getTO() {
 		CursoArtesTO to = new CursoArtesTO();
-		to.setCodigoArtes(codigoArtes);
-		to.setNomeArtes(nomeArtes);
+		to.setId(id);
+		to.setNome(nome);
 		to.setDataInicio(dataInicio);
 		to.setDataTermino(dataTermino);
-		to.setHorarioPrevisto(horarioPrevisto);
-		to.setNumeroVagas(numeroVagas);
-		to.setValorCurso(valorCurso);
+		to.setHorario(horario);
+		to.setVagas(vagas);
+		to.setValor(valor);
 		to.setLivros(livros);
 		to.setDescricaoMaterial(descricaoMaterial);
 		return to;
@@ -161,13 +161,13 @@ public class CursoArtes {
 	public void alterar() {
 		CursoArtesDAO dao = new CursoArtesDAO();
 		CursoArtesTO to = new CursoArtesTO();
-		to.setCodigoArtes(codigoArtes);
-		to.setNomeArtes(nomeArtes);
+		to.setId(id);
+		to.setNome(nome);
 		to.setDataInicio(dataInicio);
 		to.setDataTermino(dataTermino);
-		to.setHorarioPrevisto(horarioPrevisto);
-		to.setNumeroVagas(numeroVagas);
-		to.setValorCurso(valorCurso);
+		to.setHorario(horario);
+		to.setVagas(vagas);
+		to.setValor(valor);
 		to.setLivros(livros);
 		to.setDescricaoMaterial(descricaoMaterial);
 		dao.alterar(to);
@@ -175,13 +175,13 @@ public class CursoArtes {
 
 	public void consultar() {
 		CursoArtesDAO dao = new CursoArtesDAO();
-		CursoArtesTO to = dao.consultar(codigoArtes);
-		nomeArtes = to.getNomeArtes();
+		CursoArtesTO to = dao.consultar(id);
+		nome = to.getNome();
 		dataInicio = to.getDataInicio();
 		dataTermino = to.getDataTermino();
-		horarioPrevisto = to.getHorarioPrevisto();
-		numeroVagas = to.getNumeroVagas();
-		valorCurso = to.getValorCurso();
+		horario = to.getHorario();
+		vagas = to.getVagas();
+		valor = to.getValor();
 		livros = to.getLivros();
 		descricaoMaterial = to.getDescricaoMaterial();
 	}
@@ -189,20 +189,11 @@ public class CursoArtes {
 	public void deletar() {
 		CursoArtesDAO dao = new CursoArtesDAO();
 		CursoArtesTO to = new CursoArtesTO();
-		to.setCodigoArtes(codigoArtes);
+		to.setId(id);
 		dao.deletar(to);
 	}
 
-	public void consultarTodos() {
-		CursoArtesDAO dao = new CursoArtesDAO();
-		dao.consultarTodos();
-	}
-
-	public void retornarUltimoID() {
-		CursoArtesDAO dao = new CursoArtesDAO();
-		dao.retornarUltimoID();
-	}
-
+	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -211,12 +202,12 @@ public class CursoArtes {
 		if (getClass() != obj.getClass())
 			return false;
 		CursoArtes other = (CursoArtes) obj;
-		if (nomeArtes == null) {
-			if (other.nomeArtes != null)
+		if (nome == null) {
+			if (other.nome != null)
 				return false;
-		} else if (!nomeArtes.equals(other.nomeArtes))
+		} else if (!nome.equals(other.nome))
 			return false;
-		if (codigoArtes != other.codigoArtes) {
+		if (id != other.id) {
 			return false;
 		}
 		return true;

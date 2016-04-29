@@ -6,25 +6,25 @@ import to.CursoInformaticaTO;
 
 public class CursoInformatica {
 
-	private int codigoInformatica;
-	private String nomeInfo;
+	private int id;
+	private String nome;
 	private String dataInicio;
 	private String dataTermino;
-	private String horarioPrevisto;
-	private int numeroVagas;
-	private double valorCurso;
+	private String horario;
+	private int vagas;
+	private double valor;
 	private String softwares;
 	private String numeroLaboratorios;
 
 	public CursoInformatica() {
 
-		codigoInformatica = 0;
-		nomeInfo = "";
+		id = 0;
+		nome = "";
 		dataInicio = "";
 		dataTermino = "";
-		horarioPrevisto = "";
-		numeroVagas = 0;
-		valorCurso = 0.0;
+		horario = "";
+		vagas = 0;
+		valor = 0.0;
 		softwares = "";
 		numeroLaboratorios = "";
 
@@ -32,38 +32,38 @@ public class CursoInformatica {
 
 	public CursoInformatica(String nome, String dataInicio, String dataTermino, String horarioPrevisto, int numeroVagas,
 			double valorCurso, String softwares, String numeroLaboratorios) {
-		this.nomeInfo = nome;
+		this.nome = nome;
 		this.softwares = softwares;
 		this.dataInicio = dataInicio;
 		this.dataTermino = dataTermino;
-		this.horarioPrevisto = horarioPrevisto;
-		this.numeroVagas = numeroVagas;
-		this.valorCurso = valorCurso;
+		this.horario = horarioPrevisto;
+		this.vagas = numeroVagas;
+		this.valor = valorCurso;
 		this.numeroLaboratorios = numeroLaboratorios;
 	}
 	
 	public CursoInformatica(int codigo, String nome, String dataInicio, String dataTermino, String horarioPrevisto, int numeroVagas,
 			double valorCurso, String softwares, String numeroLaboratorios) {
-		this.codigoInformatica = codigo;
-		this.nomeInfo = nome;
+		this.id = codigo;
+		this.nome = nome;
 		this.softwares = softwares;
 		this.dataInicio = dataInicio;
 		this.dataTermino = dataTermino;
-		this.horarioPrevisto = horarioPrevisto;
-		this.numeroVagas = numeroVagas;
-		this.valorCurso = valorCurso;
+		this.horario = horarioPrevisto;
+		this.vagas = numeroVagas;
+		this.valor = valorCurso;
 		this.numeroLaboratorios = numeroLaboratorios;
 	}
 	
 	
 
 	// MÉTODOS DE ACESSO
-	public int getCodigoInformatica() {
-		return codigoInformatica;
+	public int getId() {
+		return id;
 	}
 
 	public String getNome() {
-		return nomeInfo;
+		return nome;
 	}
 
 	public String getDataInicio() {
@@ -74,16 +74,16 @@ public class CursoInformatica {
 		return dataTermino;
 	}
 
-	public String getHorarioPrevisto() {
-		return horarioPrevisto;
+	public String getHorario() {
+		return horario;
 	}
 
-	public int getNumeroVagas() {
-		return numeroVagas;
+	public int getVagas() {
+		return vagas;
 	}
 
-	public double getValorCurso() {
-		return valorCurso;
+	public double getValor() {
+		return valor;
 	}
 
 	public String getSoftwares() {
@@ -95,12 +95,12 @@ public class CursoInformatica {
 	}
 
 	// MÉTODOS MODIFICADORES
-	public void setCodigoInformatica(int codigoInformatica) {
-		this.codigoInformatica = codigoInformatica;
+	public void setId(int codigoInformatica) {
+		this.id = codigoInformatica;
 	}
 
 	public void setNome(String nomeCurso) {
-		this.nomeInfo = nomeCurso;
+		this.nome = nomeCurso;
 	}
 
 	public void setDataInicio(String dataInicio) {
@@ -111,16 +111,16 @@ public class CursoInformatica {
 		this.dataTermino = dataTermino;
 	}
 
-	public void setHorarioPrevisto(String horarioPrevisto) {
-		this.horarioPrevisto = horarioPrevisto;
+	public void setHorario(String horarioPrevisto) {
+		this.horario = horarioPrevisto;
 	}
 
-	public void setNumeroVagas(int numeroVagas) {
-		this.numeroVagas = numeroVagas;
+	public void setVagas(int numeroVagas) {
+		this.vagas = numeroVagas;
 	}
 
-	public void setValorCurso(double valorCurso) {
-		this.valorCurso = valorCurso;
+	public void setValor(double valorCurso) {
+		this.valor = valorCurso;
 	}
 
 	public void setSoftwares(String softwares) {
@@ -134,27 +134,27 @@ public class CursoInformatica {
 	public void incluir() {
 		CursoInformaticaDAO dao = new CursoInformaticaDAO();
 		CursoInformaticaTO to = new CursoInformaticaTO();
-		to.setNome(nomeInfo);
+		to.setNome(nome);
 		to.setDataInicio(dataInicio);
 		to.setDataTermino(dataTermino);
-		to.setHorarioPrevisto(horarioPrevisto);
-		to.setNumeroVagas(numeroVagas);
-		to.setValorCurso(valorCurso);
+		to.setHorario(horario);
+		to.setVagas(vagas);
+		to.setValor(valor);
 		to.setSoftwares(softwares);
 		to.setNumeroLaboratorios(numeroLaboratorios);
 		dao.incluir(to);
-		setCodigoInformatica(to.getCodigoInformatica());
+		setId(to.getId());
 	}
 	
 	public CursoInformaticaTO getTO() {
 		CursoInformaticaTO to = new CursoInformaticaTO();
-		to.setCodigoInformatica(codigoInformatica);
-		to.setNome(nomeInfo);
+		to.setId(id);
+		to.setNome(nome);
 		to.setDataInicio(dataInicio);
 		to.setDataTermino(dataTermino);
-		to.setHorarioPrevisto(horarioPrevisto);
-		to.setNumeroVagas(numeroVagas);
-		to.setValorCurso(valorCurso);
+		to.setHorario(horario);
+		to.setVagas(vagas);
+		to.setValor(valor);
 		to.setSoftwares(softwares);
 		to.setNumeroLaboratorios(numeroLaboratorios);
 		return to;
@@ -163,13 +163,13 @@ public class CursoInformatica {
 	public void alterar() {
 		CursoInformaticaDAO dao = new CursoInformaticaDAO();
 		CursoInformaticaTO to = new CursoInformaticaTO();
-		to.setCodigoInformatica(codigoInformatica);
-		to.setNome(nomeInfo);
+		to.setId(id);
+		to.setNome(nome);
 		to.setDataInicio(dataInicio);
 		to.setDataTermino(dataTermino);
-		to.setHorarioPrevisto(horarioPrevisto);
-		to.setNumeroVagas(numeroVagas);
-		to.setValorCurso(valorCurso);
+		to.setHorario(horario);
+		to.setVagas(vagas);
+		to.setValor(valor);
 		to.setSoftwares(softwares);
 		to.setNumeroLaboratorios(numeroLaboratorios);
 		dao.alterar(to);
@@ -177,13 +177,13 @@ public class CursoInformatica {
 
 	public void consultar() {
 		CursoInformaticaDAO dao = new CursoInformaticaDAO();
-		CursoInformaticaTO to = dao.consultar(codigoInformatica);
-		nomeInfo = to.getNome();
+		CursoInformaticaTO to = dao.consultar(id);
+		nome = to.getNome();
 		dataInicio = to.getDataInicio();
 		dataTermino = to.getDataTermino();
-		horarioPrevisto = to.getHorarioPrevisto();
-		numeroVagas = to.getNumeroVagas();
-		valorCurso = to.getValorCurso();
+		horario = to.getHorario();
+		vagas = to.getVagas();
+		valor = to.getValor();
 		softwares = to.getSoftwares();
 		numeroLaboratorios = to.getNumeroLaboratorios();
 	}
@@ -191,20 +191,11 @@ public class CursoInformatica {
 	public void deletar() {
 		CursoInformaticaDAO dao = new CursoInformaticaDAO();
 		CursoInformaticaTO to = new CursoInformaticaTO();
-		to.setCodigoInformatica(codigoInformatica);
+		to.setId(id);
 		dao.deletar(to);
 	}
-
-	public void consultarTodos() {
-		CursoInformaticaDAO dao = new CursoInformaticaDAO();
-		dao.consultarTodos();
-	}
-
-	public void retornarUltimoID() {
-		CursoInformaticaDAO dao = new CursoInformaticaDAO();
-		dao.retornarUltimoID();
-	}
-
+	
+	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -213,12 +204,12 @@ public class CursoInformatica {
 		if (getClass() != obj.getClass())
 			return false;
 		CursoInformatica other = (CursoInformatica) obj;
-		if (nomeInfo == null) {
-			if (other.nomeInfo != null)
+		if (nome == null) {
+			if (other.nome != null)
 				return false;
-		} else if (!nomeInfo.equals(other.nomeInfo))
+		} else if (!nome.equals(other.nome))
 			return false;
-		if (codigoInformatica != other.codigoInformatica) {
+		if (id != other.id) {
 			return false;
 		}
 		return true;

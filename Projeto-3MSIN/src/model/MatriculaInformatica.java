@@ -7,62 +7,63 @@ import to.MatriculaInformaticaTO;
 
 public class MatriculaInformatica {
 	// Atributos
-	private int codigoMatricula;
-	private int codigoAluno;
-	private int codigoCurso;
-	private String dataMatricula;
-	private double valorMatricula;
+	private int id;
+	private int idAluno;
+	private int idCurso;
+	private String data;
+	private double valor;
 	private String statusMatricula;
 	private String statusPagamento;
 
 	public MatriculaInformatica() {
-		codigoMatricula = 0;
-		codigoAluno = 0;
-		codigoCurso = 0;
-		dataMatricula = "";
-		valorMatricula = 0.0;
+		id = 0;
+		idAluno = 0;
+		idCurso = 0;
+		data = "";
+		valor = 0.0;
 		statusMatricula = "";
+		statusPagamento = "";
 	}
 
 	public MatriculaInformatica(String dataMatricula, double valorMatricula, String statusMatricula, String statusPagamento, int codigoAluno,
 			int codigoCurso) {
-		this.codigoAluno = codigoAluno;
-		this.codigoCurso = codigoCurso;
-		this.dataMatricula = dataMatricula;
-		this.valorMatricula = valorMatricula;
+		this.idAluno = codigoAluno;
+		this.idCurso = codigoCurso;
+		this.data = dataMatricula;
+		this.valor = valorMatricula;
 		this.statusMatricula = statusMatricula;
 		this.statusPagamento = statusPagamento;
 	}
 	
 	public MatriculaInformatica(int codigoMatricula, String dataMatricula, double valorMatricula, String statusMatricula, String statusPagamento, int codigoAluno,
 			int codigoCurso) {
-		this.codigoMatricula = codigoMatricula;
-		this.codigoAluno = codigoAluno;
-		this.codigoCurso = codigoCurso;
-		this.dataMatricula = dataMatricula;
-		this.valorMatricula = valorMatricula;
+		this.id = codigoMatricula;
+		this.idAluno = codigoAluno;
+		this.idCurso = codigoCurso;
+		this.data = dataMatricula;
+		this.valor = valorMatricula;
 		this.statusMatricula = statusMatricula;
 		this.statusPagamento = statusPagamento;
 	}
 
-	public int getCodigoMatricula() {
-		return codigoMatricula;
+	public int getId() {
+		return id;
 	}
 
-	public int getCodigoAluno() {
-		return codigoAluno;
+	public int getIdAluno() {
+		return idAluno;
 	}
 
-	public int getCodigoCurso() {
-		return codigoCurso;
+	public int getIdCurso() {
+		return idCurso;
 	}
 
-	public String getDataMatricula() {
-		return dataMatricula;
+	public String getData() {
+		return data;
 	}
 
-	public double getValorMatricula() {
-		return valorMatricula;
+	public double getValor() {
+		return valor;
 	}
 
 	public String getStatusMatricula() {
@@ -73,24 +74,24 @@ public class MatriculaInformatica {
 		return statusPagamento;
 	}
 
-	public void setCodigoMatricula(int codigoMatricula) {
-		this.codigoMatricula = codigoMatricula;
+	public void setId(int codigoMatricula) {
+		this.id = codigoMatricula;
 	}
 
-	public void setCodigoAluno(int codigoAluno) {
-		this.codigoAluno = codigoAluno;
+	public void setIdAluno(int codigoAluno) {
+		this.idAluno = codigoAluno;
 	}
 
-	public void setCodigoCurso(int codigoCurso) {
-		this.codigoCurso = codigoCurso;
+	public void setIdCurso(int codigoCurso) {
+		this.idCurso = codigoCurso;
 	}
 
-	public void setDataMatricula(String dataMatricula) {
-		this.dataMatricula = dataMatricula;
+	public void setData(String dataMatricula) {
+		this.data = dataMatricula;
 	}
 
-	public void setValorMatricula(double valorMatricula) {
-		this.valorMatricula = valorMatricula;
+	public void setValor(double valorMatricula) {
+		this.valor = valorMatricula;
 	}
 
 	public void setStatusMatricula(String statusMatricula) {
@@ -104,22 +105,22 @@ public class MatriculaInformatica {
 	public void incluir() {
 		MatriculaInformaticaDAO dao = new MatriculaInformaticaDAO();
 		MatriculaInformaticaTO to = new MatriculaInformaticaTO();
-		to.setCodigoAluno(codigoAluno);
-		to.setCodigoCurso(codigoCurso);
-		to.setDataMatricula(dataMatricula);
-		to.setValorMatricula(valorMatricula);
+		to.setIdAluno(idAluno);
+		to.setIdCurso(idCurso);
+		to.setData(data);
+		to.setValor(valor);
 		to.setStatusMatricula(statusMatricula);
 		to.setStatusPagamento(statusPagamento);
 		dao.incluir(to);
-		setCodigoMatricula(to.getCodigoMatricula());
+		setId(to.getId());
 	}
     
 	public MatriculaInformaticaTO getTO() {
 		MatriculaInformaticaTO to = new MatriculaInformaticaTO();
-		to.setCodigoAluno(codigoAluno);
-		to.setCodigoCurso(codigoCurso);
-		to.setDataMatricula(dataMatricula);
-		to.setValorMatricula(valorMatricula);
+		to.setIdAluno(idAluno);
+		to.setIdCurso(idCurso);
+		to.setData(data);
+		to.setValor(valor);
 		to.setStatusMatricula(statusMatricula);
 		to.setStatusPagamento(statusPagamento);
 		return to;
@@ -129,11 +130,11 @@ public class MatriculaInformatica {
 	public void alterar() {
 		MatriculaInformaticaDAO dao = new MatriculaInformaticaDAO();
 		MatriculaInformaticaTO to = new MatriculaInformaticaTO();
-		to.setCodigoMatricula(codigoMatricula);
-		to.setCodigoAluno(codigoAluno);
-		to.setCodigoCurso(codigoCurso);
-		to.setDataMatricula(dataMatricula);
-		to.setValorMatricula(valorMatricula);
+		to.setId(id);
+		to.setIdAluno(idAluno);
+		to.setIdCurso(idCurso);
+		to.setData(data);
+		to.setValor(valor);
 		to.setStatusMatricula(statusMatricula);
 		to.setStatusPagamento(statusPagamento);
 		dao.alterar(to);
@@ -141,11 +142,11 @@ public class MatriculaInformatica {
 
 	public void consultar() {
 		MatriculaInformaticaDAO dao = new MatriculaInformaticaDAO();
-		MatriculaInformaticaTO to = dao.consultar(codigoMatricula);
-		codigoAluno = to.getCodigoAluno();
-		codigoCurso = to.getCodigoCurso();
-		dataMatricula = to.getDataMatricula();
-		valorMatricula = to.getValorMatricula();
+		MatriculaInformaticaTO to = dao.consultar(id);
+		idAluno = to.getIdAluno();
+		idCurso = to.getIdCurso();
+		data = to.getData();
+		valor = to.getValor();
 		statusMatricula = to.getStatusMatricula();
 		statusPagamento = to.getStatusPagamento();
 	}
@@ -153,20 +154,10 @@ public class MatriculaInformatica {
 	public void deletar() {
 		MatriculaInformaticaDAO dao = new MatriculaInformaticaDAO();
 		MatriculaInformaticaTO to = new MatriculaInformaticaTO();
-		to.setCodigoMatricula(codigoMatricula);
+		to.setId(id);
 		dao.deletar(to);
 	}
 
-	public void consultarTodos() {
-		MatriculaInformaticaDAO dao = new MatriculaInformaticaDAO();
-		dao.consultarTodos();
-	}
-
-	public void retornarUltimoID() {
-		MatriculaInformaticaDAO dao = new MatriculaInformaticaDAO();
-		dao.retornarUltimoID();
-	}
-	
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -180,13 +171,13 @@ public class MatriculaInformatica {
 				return false;
 		} else if (!statusPagamento.equals(other.statusPagamento))
 			return false;
-		if (codigoMatricula != other.codigoMatricula) {
+		if (id != other.id) {
 			return false;
 		}
-		if (codigoAluno != other.codigoAluno) {
+		if (idAluno != other.idAluno) {
 			return false;
 		}
-		if (codigoCurso != other.codigoCurso) {
+		if (idCurso != other.idCurso) {
 			return false;
 		}
 		return true;

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.MatriculaInformatica;
+import to.ListaMatriculaInformaticaTO;
 import to.MatriculaInformaticaTO;
 import java.util.ArrayList;
 
@@ -28,14 +29,14 @@ public class ManterMatriculaInformaticaController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		String pAcao = request.getParameter("acao");
 		String pIdMatricula = request.getParameter("idMatricula");
 		String pIdAluno = request.getParameter("idAluno");
 		String pIdCurso = request.getParameter("idCurso");
 		double valorMatricula = Double.parseDouble(request.getParameter("valor") != null ? request.getParameter("valor") : "0");
-		String pValorMatricula = request.getParameter("valor");
 		String pStatusMatricula = request.getParameter("statusMatricula");
 		String pStatusPagamento = request.getParameter("statusPagamento");
 
@@ -67,23 +68,24 @@ public class ManterMatriculaInformaticaController extends HttpServlet {
 			matriculaInformatica.incluir();
 			ArrayList<MatriculaInformaticaTO> lista = new ArrayList<>();
 			lista.add(matriculaInformatica.getTO());
-			request.setAttribute("lista", lista);
-			view = request.getRequestDispatcher("Listar_MatriculaInformatica.jsp");
+			ListaMatriculaInformaticaTO lmi = new ListaMatriculaInformaticaTO();
+			request.setAttribute("lista", lmi);
+			view = request.getRequestDispatcher("ListarMatriculaInformatica.jsp");
 		} else if (pAcao.equals("Excluir")) {
 			matriculaInformatica.deletar();
-			view = request.getRequestDispatcher("Listar_MatriculaInformatica.html");
+			view = request.getRequestDispatcher("ListarMatriculaInformatica.jsp");
 		} else if (pAcao.equals("Alterar")) {
 			matriculaInformatica.alterar();
 			request.setAttribute("matriculaInformatica", matriculaInformatica.getTO());
-			view = request.getRequestDispatcher("Consultar_MatriculaInformatica.jsp");
+			view = request.getRequestDispatcher("ConsultarMatriculaInformatica.jsp");
 		} else if (pAcao.equals("Visualizar")) {
 			matriculaInformatica.consultar();
 			request.setAttribute("matriculaInformatica", matriculaInformatica.getTO());
-			view = request.getRequestDispatcher("Consultar_MatriculaInformatica.jsp");
+			view = request.getRequestDispatcher("ConsultarMatriculaInformatica.jsp");
 		} else if (pAcao.equals("Editar")) {
 			matriculaInformatica.consultar();
 			request.setAttribute("matriculaInformatica", matriculaInformatica.getTO());
-			view = request.getRequestDispatcher("Alterar_MatriculaInformatica.jsp");
+			view = request.getRequestDispatcher("AlterarMatriculaInformatica.jsp");
 		}
 		view.forward(request, response);
 	}

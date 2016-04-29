@@ -2,67 +2,88 @@ package to;
 
 public class MatriculaInformaticaTO {
 	// atributos
-	private int codigoMatricula;
-	private int codigoAluno;
-	private int codigoCurso;
-	private String dataMatricula;
-	private double valorMatricula;
-	private String statusMatricula;
-	private String statusPagamento;
+		private int id;
+		private int idAluno;
+		private String nomeAluno;
+		private int idCurso;
+		private String nomeInformatica;
+		private String data;
+		private double valor;
+		private String statusMatricula;
+		private String statusPagamento;
 
-	public int getCodigoMatricula() {
-		return codigoMatricula;
-	}
 
-	public int getCodigoAluno() {
-		return codigoAluno;
-	}
+		public int getId() {
+			return id;
+		}
 
-	public int getCodigoCurso() {
-		return codigoCurso;
-	}
+		public int getIdAluno() {
+			return idAluno;
+		}
+		
+		
 
-	public String getDataMatricula() {
-		return dataMatricula;
-	}
+		public int getIdCurso() {
+			return idCurso;
+		}
 
-	public double getValorMatricula() {
-		return valorMatricula;
-	}
+		public String getData() {
+			return data;
+		}
 
-	public String getStatusMatricula() {
-		return statusMatricula;
-	}
+		public double getValor() {
+			return valor;
+		}
 
-	public String getStatusPagamento() {
-		return statusPagamento;
-	}
+		public String getStatusMatricula() {
+			return statusMatricula;
+		}
 
-	public void setCodigoMatricula(int codigoMatricula) {
-		this.codigoMatricula = codigoMatricula;
-	}
+		public String getStatusPagamento() {
+			return statusPagamento;
+		}
 
-	public void setCodigoAluno(int codigoAluno) {
-		this.codigoAluno = codigoAluno;
-	}
+		public void setId(int codigoMatricula) {
+			this.id = codigoMatricula;
+		}
 
-	public void setCodigoCurso(int codigoCurso) {
-		this.codigoCurso = codigoCurso;
-	}
+		public void setIdAluno(int codigoAluno) {
+			this.idAluno = codigoAluno;
+		}
 
-	public void setDataMatricula(String dataMatricula) {
-		this.dataMatricula = dataMatricula;
-	}
+		public void setIdCurso(int codigoCurso) {
+			this.idCurso = codigoCurso;
+		}
 
-	public void setValorMatricula(double valorMatricula) {
-		this.valorMatricula = valorMatricula;
-	}
+		public void setData(String dataMatricula) {
+			this.data = dataMatricula;
+		}
 
-	public void setStatusMatricula(String statusMatricula) {
-		this.statusMatricula = statusMatricula;
-	}
+		public void setValor(double valorMatricula) {
+			this.valor = valorMatricula;
+		}
 
-	public void setStatusPagamento(String statusPagamento) {
-		this.statusPagamento = statusPagamento;
-	}
+		public void setStatusMatricula(String statusMatricula) {
+			this.statusMatricula = statusMatricula;
+		}
+
+		public void setStatusPagamento(String statusPagamento) {
+			this.statusPagamento = statusPagamento;
+		}
+
+		public String getNomeAluno() {
+			return nomeAluno;
+		}
+
+		public void setNomeAluno(String nomeAluno) {
+			this.nomeAluno = nomeAluno;
+		}
+
+		public String getNomeInformatica() {
+			return nomeInformatica;
+		}
+
+		public void setNomeCurso(String nomeInformatica) {
+			this.nomeInformatica = nomeInformatica;
+		}
 }

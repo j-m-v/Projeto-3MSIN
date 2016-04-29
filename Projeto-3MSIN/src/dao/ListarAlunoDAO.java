@@ -8,12 +8,14 @@ import java.util.ArrayList;
 
 import factory.ConnectionFactory;
 import to.AlunoTO;
+import to.ListaAlunoTO;
+
 
 
 
 public class ListarAlunoDAO {
 	
-	public ArrayList<AlunoTO> listarAlunos() {
+	public ListaAlunoTO listarAlunos() {
 		AlunoTO to;
 		ArrayList<AlunoTO> lista = new ArrayList<>();
 		String sqlSelect = "SELECT * FROM Aluno";
@@ -23,15 +25,15 @@ public class ListarAlunoDAO {
 			try (ResultSet rs = stm.executeQuery();) {
 				while(rs.next()) {
 					to = new AlunoTO();
-					to.setCodigo(rs.getInt("codigoAluno"));
+					to.setId(rs.getInt("idAluno"));
 					to.setNome(rs.getString("nome"));
-					to.setCPF(rs.getString("CPF"));
-					to.setRG(rs.getString("RG"));
-					to.setDataNasc(rs.getString("dataNasc"));
-					to.setRG(rs.getString("RG"));
-					to.setTelefone(rs.getString("telefone"));
+					to.setCpf(rs.getString("cpf"));
+					to.setRg(rs.getString("rg"));
+					to.setDataNascimento(rs.getString("dataNascimento"));
+					to.setRg(rs.getString("RG"));
+					to.setTelefone(rs.getString("fone"));
 					to.setEmail(rs.getString("email"));
-					to.setCEP(rs.getString("cep"));
+					to.setCep(rs.getString("cep"));
 					to.setEndereco(rs.getString("endereco"));
 					to.setCidade(rs.getString("cidade"));
 					to.setEstado(rs.getString("estado"));
@@ -43,10 +45,12 @@ public class ListarAlunoDAO {
 		} catch (SQLException e1) {
 			System.out.print(e1.getStackTrace());
 		}
-		return lista;
+		ListaAlunoTO listaAluno = new ListaAlunoTO();
+		listaAluno.setAlunos(lista);
+		return listaAluno;
 	}
 	
-	public ArrayList<AlunoTO> listarAlunos(String chave) {
+	public ListaAlunoTO listarAlunos(String chave) {
 		AlunoTO to;
 		ArrayList<AlunoTO> lista = new ArrayList<>();
 		String sqlSelect = "SELECT * FROM Aluno where upper(nome) like ?";
@@ -57,15 +61,15 @@ public class ListarAlunoDAO {
 			try (ResultSet rs = stm.executeQuery();) {
 				while(rs.next()) {
 					to = new AlunoTO();
-					to.setCodigo(rs.getInt("codigoAluno"));
+					to.setId(rs.getInt("idAluno"));
 					to.setNome(rs.getString("nome"));
-					to.setCPF(rs.getString("CPF"));
-					to.setRG(rs.getString("RG"));
-					to.setDataNasc(rs.getString("dataNasc"));
-					to.setRG(rs.getString("RG"));
-					to.setTelefone(rs.getString("telefone"));
+					to.setCpf(rs.getString("cpf"));
+					to.setRg(rs.getString("rg"));
+					to.setDataNascimento(rs.getString("dataNascimento"));
+					to.setRg(rs.getString("RG"));
+					to.setTelefone(rs.getString("fone"));
 					to.setEmail(rs.getString("email"));
-					to.setCEP(rs.getString("cep"));
+					to.setCep(rs.getString("cep"));
 					to.setEndereco(rs.getString("endereco"));
 					to.setCidade(rs.getString("cidade"));
 					to.setEstado(rs.getString("estado"));
@@ -77,7 +81,9 @@ public class ListarAlunoDAO {
 		} catch (SQLException e1) {
 			System.out.print(e1.getStackTrace());
 		}
-		return lista;
+		ListaAlunoTO listaAluno = new ListaAlunoTO();
+		listaAluno.setAlunos(lista);
+		return listaAluno;
 	}
 
 

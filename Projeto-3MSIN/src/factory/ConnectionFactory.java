@@ -19,7 +19,7 @@ public class ConnectionFactory {
 
 	// Obtém conexão com o banco dSe dados
 	public static Connection obtemConexao() throws SQLException {
-		return DriverManager.getConnection("jdbc:mysql://localhost/Projeto?user=root&password=usjt@prof2014");
+		return DriverManager.getConnection("jdbc:mysql://localhost/Projeto?user=root&password=12345678");
 
 	}
 }

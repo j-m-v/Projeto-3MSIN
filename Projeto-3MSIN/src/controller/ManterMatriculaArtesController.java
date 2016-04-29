@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.MatriculaArtes;
+import to.ListaMatriculaArtesTO;
 import to.MatriculaArtesTO;
 import java.util.ArrayList;
 
@@ -28,14 +29,14 @@ public class ManterMatriculaArtesController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		String pAcao = request.getParameter("acao");
 		String pIdMatricula = request.getParameter("idMatricula");
 		String pIdAluno = request.getParameter("idAluno");
 		String pIdCurso = request.getParameter("idCurso");
-		double valorMatricula = Double.parseDouble(request.getParameter("valor") != null ? request.getParameter("valor") : "0");
-		String pValorMatricula = request.getParameter("valor");
+		double valor    = Double.parseDouble(request.getParameter("valor") != null ? request.getParameter("valor") : "0");
 		String pStatusMatricula = request.getParameter("statusMatricula");
 		String pStatusPagamento = request.getParameter("statusPagamento");
 
@@ -59,7 +60,7 @@ public class ManterMatriculaArtesController extends HttpServlet {
 
 		MatriculaArtes m = new MatriculaArtes();
 		String data = m.dataAtual();
-		MatriculaArtes matriculaArtes = new MatriculaArtes(idMatricula, data, valorMatricula, pStatusMatricula,
+		MatriculaArtes matriculaArtes = new MatriculaArtes(idMatricula, data, valor, pStatusMatricula,
 				pStatusPagamento, idAluno, idCurso);
 		RequestDispatcher view = null;
 
@@ -67,23 +68,24 @@ public class ManterMatriculaArtesController extends HttpServlet {
 			matriculaArtes.incluir();
 			ArrayList<MatriculaArtesTO> lista = new ArrayList<>();
 			lista.add(matriculaArtes.getTO());
-			request.setAttribute("lista", lista);
-			view = request.getRequestDispatcher("Listar_MatriculaArtes.jsp");
+			ListaMatriculaArtesTO lma = new ListaMatriculaArtesTO();
+			request.setAttribute("lista", lma);
+			view = request.getRequestDispatcher("ListarMatriculaArtes.jsp");
 		} else if (pAcao.equals("Excluir")) {
 			matriculaArtes.deletar();
-			view = request.getRequestDispatcher("Listar_MatriculaArtes.html");
+			view = request.getRequestDispatcher("ListarMatriculaArtes.jsp");
 		} else if (pAcao.equals("Alterar")) {
 			matriculaArtes.alterar();
 			request.setAttribute("matriculaArtes", matriculaArtes.getTO());
-			view = request.getRequestDispatcher("Consultar_MatriculaArtes.jsp");
+			view = request.getRequestDispatcher("ConsultarMatriculaArtes.jsp");
 		} else if (pAcao.equals("Visualizar")) {
 			matriculaArtes.consultar();
 			request.setAttribute("matriculaArtes", matriculaArtes.getTO());
-			view = request.getRequestDispatcher("Consultar_MatriculaArtes.jsp");
+			view = request.getRequestDispatcher("ConsultarMatriculaArtes.jsp");
 		} else if (pAcao.equals("Editar")) {
 			matriculaArtes.consultar();
 			request.setAttribute("matriculaArtes", matriculaArtes.getTO());
-			view = request.getRequestDispatcher("Alterar_MatriculaArtes.jsp");
+			view = request.getRequestDispatcher("AlterarMatriculaArtes.jsp");
 		}
 		view.forward(request, response);
 	}

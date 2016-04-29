@@ -2,23 +2,23 @@ package to;
 
 public class CursoInformaticaTO {
 
-	private int codigoInformatica;
-	private String nomeCurso;
+	private int id;
+	private String nome;
 	private String dataInicio;
 	private String dataTermino;
-	private String horarioPrevisto;
-	private int numeroVagas;
-	private double valorCurso;
+	private String horario;
+	private int vagas;
+	private double valor;
 	private String softwares;
 	private String numeroLaboratorios;
 
 	// MÉTODOS DE ACESSO
-	public int getCodigoInformatica() {
-		return codigoInformatica;
+	public int getId() {
+		return id;
 	}
 
 	public String getNome() {
-		return nomeCurso;
+		return nome;
 	}
 
 	public String getDataInicio() {
@@ -29,16 +29,16 @@ public class CursoInformaticaTO {
 		return dataTermino;
 	}
 
-	public String getHorarioPrevisto() {
-		return horarioPrevisto;
+	public String getHorario() {
+		return horario;
 	}
 
-	public int getNumeroVagas() {
-		return numeroVagas;
+	public int getVagas() {
+		return vagas;
 	}
 
-	public double getValorCurso() {
-		return valorCurso;
+	public double getValor() {
+		return valor;
 	}
 
 	public String getSoftwares() {
@@ -50,12 +50,12 @@ public class CursoInformaticaTO {
 	}
 
 	// MÉTODOS MODIFICADORES
-	public void setCodigoInformatica(int codigoInformatica) {
-		this.codigoInformatica = codigoInformatica;
+	public void setId(int codigoInformatica) {
+		this.id = codigoInformatica;
 	}
 
 	public void setNome(String nomeCurso) {
-		this.nomeCurso = nomeCurso;
+		this.nome = nomeCurso;
 	}
 
 	public void setDataInicio(String dataInicio) {
@@ -66,16 +66,16 @@ public class CursoInformaticaTO {
 		this.dataTermino = dataTermino;
 	}
 
-	public void setHorarioPrevisto(String horarioPrevisto) {
-		this.horarioPrevisto = horarioPrevisto;
+	public void setHorario(String horarioPrevisto) {
+		this.horario = horarioPrevisto;
 	}
 
-	public void setNumeroVagas(int numeroVagas) {
-		this.numeroVagas = numeroVagas;
+	public void setVagas(int numeroVagas) {
+		this.vagas = numeroVagas;
 	}
 
-	public void setValorCurso(double valorCurso) {
-		this.valorCurso = valorCurso;
+	public void setValor(double valorCurso) {
+		this.valor = valorCurso;
 	}
 
 	public void setSoftwares(String softwares) {

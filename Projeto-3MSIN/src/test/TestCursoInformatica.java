@@ -22,7 +22,7 @@ public class TestCursoInformatica {
 	@Test
 	public void testIncluir() {
 		curso.incluir();
-		copia.setCodigoInformatica(curso.getCodigoInformatica());
+		copia.setId(curso.getId());
 		copia.consultar();
 		assertEquals(curso, copia);
 	}

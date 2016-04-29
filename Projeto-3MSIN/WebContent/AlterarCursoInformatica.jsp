@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="to.CursoInformaticaTO"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -25,44 +25,18 @@
 		}
 	}
 </script>
-
-<%
-	CursoInformaticaTO to = (CursoInformaticaTO) request.getAttribute("cursoInformativa");
-%>
+<jsp:useBean id="cursoInformatica" class="to.CursoInformaticaTO" scope="request" />
 <body>
-	<!-- Barra superior com os menus de navegação -->
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed"
-					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-					aria-controls="navbar">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="index.html">Home</a>
-			</div>
-			<div id="navbar" class="navbar-collapse collapse">
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="Listar_Alunos.html">Alunos</a></li>
-					<li><a href="#">Cursos Artes</a></li>
-					<li><a href="#">Cursos Informatica</a></li>
-					<li><a href="#">Matricula Artes</a></li>
-					<li><a href="#">Matricula Informatica</a></li>
-					<li><a href="#">Ajuda</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
-	
+  <!-- Barra superior com os menus de navegação -->
+    <c:import url="Menu.jsp" />
+
 	<!-- Container Principal -->
 	<div id="main" class="container">
-		<h3 class="page-header">Alterar Curso #<%=to.getCodigoInformatica() %></h3>
+		<h3 class="page-header">Alterar Curso #${cursoInformatica.id}</h3>
 		<!-- Formulario para inclusao de Curso Informatica -->
 		<form action="ManterCursoInformatica.do" method="post">
 			<!-- area de campos do form -->
-			 <input type="hidden" name="id" value="<%=to.getCodigoInformatica() %>" />
+			 <input type="hidden" name="id" value="${cursoInformatica.id}" />
 			<fieldset>
 				<legend>Dados do curso</legend>
 
@@ -70,43 +44,43 @@
 					<div class="form-group col-md-12">
 						<label for="nome">Nome</label> <input type="text"
 							class="form-control" name="nome" id="nome" required
-							maxlength="100" pattern="[a-zA-Z\s]+" placeholder="nome"value="<%=to.getNome()%>">
+							maxlength="100" pattern="[a-zA-Z\s]+" placeholder="nome"value="${cursoInformatica.nome}">
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group col-md-2">
-					     <label for="dataInicio">Data Inicio</label> <input type="date" name="dataInicio" placeholder="DataInicio" min="2016-01-01" onkeypress="mascara(this, '##/##/####')" maxlength="10" value="<%=to.getDataInicio()%>" />
+					     <label for="dataInicio">Data Inicio</label> <input type="date" name="dataInicio" placeholder="DataInicio" min="2016-01-01" onkeypress="mascara(this, '##/##/####')" maxlength="10" value="${cursoInformatica.dataInicio}" />
     					</div>
 
 					<div class="form-group col-md-2">
-						<label for="dataTermino">Data Termino</label> <input type="date" name="dataTermino" placeholder="Data Termino" min="2016-01-01" onkeypress="mascara(this, '##/##/####')" maxlength="10"value="<%=to.getDataTermino()%>" />
+						<label for="dataTermino">Data Termino</label> <input type="date" name="dataTermino" placeholder="Data Termino" min="2016-01-01" onkeypress="mascara(this, '##/##/####')" maxlength="10"value="${cursoInformatica.dataTermino}" />
 					</div>
 
 					<div class="form-group col-md-2">
-						<label for="dataNasc">Horario Previsto</label> <input type="time" name="horarioPrevisto"value="<%=to.getHorarioPrevisto()%>"/>        
+						<label for="dataNasc">Horario Previsto</label> <input type="time" name="horarioPrevisto"value="${cursoInformatica.horario}"/>        
 
-					</div>
+					</div>v
 				</div>
 
 				<div class="row">
 					<div class="form-group col-md-2">
-					     <label for="vagas">Vagas</label> <input type="text" name="vagas" placeholder="Nº Vagas" pattern="[0-9]+$" title="Apenas numeros"value="<%=to.getNumeroVagas()%>"/>
-    					</div>
-
-				
-					<div class="form-group col-md-2">
-					     <label for="valor">Valor</label> <input type="text" name="valor" placeholder="Valor Curso" pattern="[0-9]+([\.,][0-9]+)?" step="0.01" title = "Apenas numeros com ate 2 casas decimais. " value="<%=to.getValorCurso()%>"/>
+					     <label for="vagas">Vagas</label> <input type="text" name="vagas" placeholder="Nº Vagas" pattern="[0-9]+$" title="Apenas numeros"value="${cursoInformatica.vagas}"/>
     					</div>
 
 				
 					<div class="form-group col-md-2">
-						<label for="cep">Nº Laboratorios</label> <input type="text" name="numeroLaboratorios" size=25 placeholder="Descricao do material que será utilizado" pattern="[a-zA-Z0-9 ,\s]+" title= "Caracter não permitido"value="<%=to.getNumeroLaboratorios()%>"/>
+					     <label for="valor">Valor</label> <input type="text" name="valor" placeholder="Valor Curso" pattern="[0-9]+([\.,][0-9]+)?" step="0.01" title = "Apenas numeros com ate 2 casas decimais. " value="${cursoInformatica.valor}"/>
+    					</div>
+
+				
+					<div class="form-group col-md-2">
+						<label for="cep">Nº Laboratorios</label> <input type="text" name="numeroLaboratorios" size=25 placeholder="Descricao do material que será utilizado" pattern="[a-zA-Z0-9 ,\s]+" title= "Caracter não permitido"value="${cursoInformatica.numeroLaboratorios}"/>
 					</div>
 				</div>
 
 				<div class="row">
 					<div class="form-group col-md-2">
-					     <label for="software">Software</label> <input type="text" name="software" size=45 placeholder="Livros" pattern="[a-zA-Z0-9 ,\s]+" title="Caracter invalido"value="<%=to.getSoftwares()%>"/>
+					     <label for="software">Software</label> <input type="text" name="software" size=45 placeholder="Livros" pattern="[a-zA-Z0-9 ,\s]+" title="Caracter invalido"value="${cursoInformatica.softwares}"/>
     				</div>
 
 
@@ -117,7 +91,7 @@
 			<div class="col-md-12">
 					<button type="submit" class="btn btn-primary" name="acao"
 						value="Alterar">Salvar</button>
-					<a href="Listar_CursoArtes.html" class="btn btn-default">Cancelar</a>
+					<a href="ListarCursoInformatica.jsp" class="btn btn-default">Cancelar</a>
 			</div>
 
 
